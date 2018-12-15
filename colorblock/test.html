@@ -1,0 +1,10 @@
+         <script>
+    $(function() {$('.color').colorPicker({
+      renderCallback: function($elm, toggled) {
+          if ($elm.text) {$('.color').text('.color: ' + $elm.text).css('background-color', $elm.text)
+                          }
+      }
+      })
+    });
+    console.log('%c Hooks executing', "background: blue; color: black; padding-left:10px;");
+   </script>

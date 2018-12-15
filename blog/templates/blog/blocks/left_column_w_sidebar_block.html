@@ -1,0 +1,12 @@
+{% load static wagtailcore_tags %}
+
+<div class="row">
+
+    <div class="col-12 col-md-8 px-3">
+        {% include_block self.left_column %}
+    </div>
+    <div class="col-12 col-md-4 px-3">
+        {% include_block self.sidebar_column %}
+    </div>
+
+</div>

@@ -1,0 +1,20 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="card profile-card-4 mx-auto" style="border:5px rgb(20,20,20,0.5) solid;max-width:316px;margin-top:2rem;margin-bottom:2rem;">
+    <div class="card-img-block">
+        <div class="info-box">{{motto}}</div>
+        {% image background_image fill-600x372 as tmp_image %}
+        <img src="{{  tmp_image.url }}" class="img-fluid" alt="card image cap" />
+    </div>
+    <!--end card-img-block-->
+    <div class="card-body pt-5">
+        {% image profile_photo max-128x128 as tmp_photo %} <img src="{{  tmp_photo.url }}" class="profile" alt="photo of {{ first_name }} {{ last_name }}" />
+
+        <h5 class="card-title text-center">{{ first_name }} {{ last_name }}</h5>
+        <p class="card-text  text-center">{{ biography }}</p>
+        <div class="icon-block text-center"><a href="{{ githubURL }}"><i class="fa fa-github"></i></a><a href="mailto://{{ email }}">
+                <i class="fa fa-envelope-o"></i></a><a href="{{ linkedinURL }}">
+                <i class="fa fa-linkedin"></i></a>
+        </div>
+    </div><!-- end card-body-->
+</div><!-- end card-->

@@ -1,0 +1,186 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
+@import url('https://fonts.googleapis.com/css?family=Anton|Fira+Sans+Extra+Condensed');
+html,
+body {
+    height: 100%;
+    position: relative;
+    background-color: #fff;
+}
+
+.blog-page, .post-page {
+    padding-top:3.5rem;
+    padding-bottom:0;
+}
+
+p {
+    text-align: justify;
+    text-justify: inter-character;
+}
+
+.jumbotron,
+.jumbotron-fluid {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(255,255,255);
+    text-shadow: rgb(31, 8, 18) 5px 2px 3px;
+}
+
+.jumbotron .purple,
+.jumbotron-fluid .purple{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(255, 0, 255);
+    text-shadow: rgb(85, 18, 49) 5px 2px 3px;
+}
+
+.display-4 {
+    font-weight: 700;
+}
+
+.jumbotron-text-muted {
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    color: #9a9b9c;
+    text-shadow: rgb(80, 18, 49) 5px 2px 3px;
+}
+.jumbotron-text-muted .yellow{
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    color: #ccca6c;
+    text-shadow: rgb(80, 18, 49) 5px 2px 3px;
+}
+
+.rich-text img {
+    max-width: 100%;
+    height: auto;
+}
+
+.responsive-object {
+    position: relative;
+}
+
+.responsive-object iframe,
+.responsive-object object,
+.responsive-object embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.logo {
+    max-width: 1.2em;
+}
+/*Profile card 4*/
+
+
+.profile-card-4 .card-img-block {
+    width: 100%;
+    max-height: 35%;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-card-4 .card-body {
+    position: relative;
+}
+
+.profile-card-4 .profile {
+    border-radius: 50%;
+    position: absolute;
+    top: -62px;
+    left: 50%;
+    width: 100px;
+    border: 3px solid rgba(255, 255, 255, 1);
+    margin-left: -50px;
+}
+
+.profile-card-4 .card-img-block>.info-box {
+    position: absolute;
+    background: rgba(217, 11, 225, 0.6);
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: .9em;
+    -webkit-transition: 1s ease;
+    -moz-transition: 1s ease;
+    -o-transition: 1s ease;
+    transition: 1s ease;
+    opacity: 0;
+}
+
+.profile-card-4 .card-img-block:hover>.info-box {
+    opacity: 1;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.profile-card-4 h5 {
+    font-weight: 600;
+    color: #d90be1;
+}
+
+.profile-card-4 .card-text {
+    font-weight: 300;
+    font-size: .9em;
+}
+
+.profile-card-4 .icon-block {
+    width: 100%;
+}
+
+.profile-card-4 .icon-block a {
+    text-decoration: none;
+}
+
+.profile-card-4 i {
+    display: inline-block;
+    font-size: 1em;
+    color: #d90be1;
+    text-align: center;
+    border: 1px solid #d90be1;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.profile-card-4 i:hover {
+    background-color: #d90be1;
+    color: #fff;
+}
+
+html {
+    font-size: 1rem;
+}
+
+@media screen and (min-width: 480) {
+    html,
+    body {
+        font-size: 1rem;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 800) {
+    html,
+    body {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    html,
+    body {
+        font-size: 1.2rem;
+    }
+}
+/* .card .profile-card-4 {
+    border: 5px rgb(95, 1, 48, 0.5) solid;
+} */

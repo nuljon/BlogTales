@@ -1,0 +1,40 @@
+{% load static wagtailcore_tags blogapp_tags wagtailroutablepage_tags %}
+
+<!-- Navigation -->
+
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark"><a class="navbar-brand" href="http://nuljon.com">{<img class="logo" src="{% static 'assets/logo-inverse.png' %}" alt="nuljon.com logo" />} nuljon.com</a>
+    <!-- <a class="navbar-brand" href="http://nuljon.com">{ }JON.com</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nuljon-nav" aria-controls="nuljon.com navigation bar"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nuljon-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/blog"><span class="sr-only">(current)</span>blogtales</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href=.portfolio" id="portfolioDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Portfolio
+                </a>
+                <div class="dropdown-menu" aria-labelledby="portfolioDropdown">
+                    <a class="dropdown-item" href="/projects/project1">Project 1</a>
+                    <a class="dropdown-item" href="/projects/projet2">Project 2</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/projects/project 3">Project 3</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Me</a>
+            </li>
+        </ul>
+        <form role="search" method="get" class="form-inline my-2 my-lg-0 form-search" action="{% routablepageurl blog_page "blog_search" %}" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control search-query mr-sm-2" name="q" placeholder="Search&hellip;"
+                    aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</nav>

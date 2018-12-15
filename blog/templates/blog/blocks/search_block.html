@@ -1,0 +1,29 @@
+{% load static wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags blogapp_tags%}
+{% load taggit_templatetags2_tags %}
+
+{% include "taggit_templatetags2/tagcanvas_include_js_static.html" %}
+<div class="card d-flex flex-column" style="max-width:30rem;border:5px rgb(20,20,20,0.5) solid;margin-top:2rem;margin-bottom:2rem;">
+    <div class="card-title text-center">Search BlogTales</div>
+    <div class="card-body px-4">
+        <form role="search" method="get" class="form-search" action="{% routablepageurl page.blog_page "blog_search" %}" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control search-query" name="q" placeholder="&hellip;" title="Search for:" />
+                <span class="input-group-btn">
+                    <button type="submit" class="btn" name="submit" id="searchsubmit" value="Search"><i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div><!-- /.input-group -->
+        </form>
+        <div class="card-subtitle text-muted text-center py-2">
+           by Category:</div>
+        <div>
+            {% categories_list %}
+        </div>
+        <div class="card-subtitle text-muted text-center py-2">by Tag:</div>
+        <div>
+            <font size={{tag.weight|floatformat:0}}>{{tag}}</font>
+            {% include_tagcanvas 'element_id' 'width 316' 'height 300px' 'tagcanvas-list' 'blog.PostPage' %}
+            <p style="color:#777"></p>
+        </div>
+    </div>
+</div>

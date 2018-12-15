@@ -1,0 +1,11 @@
+{% load static wagtailcore_tags %}
+ <div class="title-block" style="color:{% include_block self.color %}">
+    <h1 class="display-4 text-center" style="text-shadow:{% include_block                                                                              self.shadow_offsets %} rgba(0,0,0,{% include_block self.shadow_opacity %})">
+        {% include_block self.text %}
+    </h1>
+    {% if post %}
+    <div class="text-center" style="opacity: 0.58; color:{{ value.color }}">
+        <i class="fa fa-calendar"></i> {{post.date}} &nbsp;
+        <i class="fa  fa-user"></i> {{post.owner}} &nbsp;
+    </div>
+    {% endif %}

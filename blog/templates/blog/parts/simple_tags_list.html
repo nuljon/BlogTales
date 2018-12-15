@@ -1,0 +1,11 @@
+im
+
+{% if page.tags.all.count %}
+<section class="tags-section mb-3">
+    <div class="tags">
+        <h3>Tags</h3>
+        {% for tag in page.tags.all %}
+        {{ tag }}
+        {% endfor %}
+    </div>
+</section>

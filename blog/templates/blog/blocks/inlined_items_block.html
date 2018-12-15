@@ -1,0 +1,11 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+{% load wagtailroutablepage_tags blogapp_tags %}
+
+<div class="container-fluid" style="display: flex;
+        flex-flow: row wrap; justify-content: space-around">
+        {% with blocks=self %}
+        {% for block in blocks %}
+        {% include_block block %}
+        {% endfor %}
+        {% endwith %}
+</div>

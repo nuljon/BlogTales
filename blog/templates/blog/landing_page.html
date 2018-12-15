@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+{% load wagtailroutablepage_tags blogapp_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cover.css' %}">
+{% endblock extra_css %}
+
+{% block body_class %}landing-page{% endblock %}
+
+{% block body_style %}
+{% with background_image=self.background %}
+{% image background_image width-3840 as tmp_image %}
+background:transparent url(&quot{{tmp_image.url}}&quot) center / cover no-repeat;
+{% endwith %}
+{% endblock body_style %}
+
+{% block content %}
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    {% include "blog/parts/cover_nav.html" %}
+
+    <main role="main" class="inner cover">
+        {% with blocks=self.body %}
+        {% for block in blocks %}
+            {% include_block block %}
+            {% endfor %}
+            {% endwith %}
+    </main>
+    <footer class="mastfoot mt-auto">
+<div class="inner d-inline">
+<p><span class="footer-credits">&nbsp;<a href="/blog">nuljon.com</a> is made with<img class="wagtail-logo" src="{% static 'assets/wagtail-logo.svg' %}" alt="wagtail logo" />wagtail CMS</span>
+        </div>
+<div class="search-field d-inline">
+        <form role="search" method="get" class="form-inline my-2 my-lg-0 form-search" action="{% routablepageurl blog_page "blog_search" %}" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control search-query mr-sm-2" name="q" placeholder="&hellip;"
+                    aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </div>
+        </form>
+</div><!-- end searh-field -->
+    </footer>
+</div><!-- end cover-container -->
+{% endblock content %}

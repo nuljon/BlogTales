@@ -1,0 +1,15 @@
+<section class="categories-section mb-3">
+    {% with categories=page.categories.all %}
+    {% if categories %}
+    <h3>Categories</h3>
+    <ul>
+        {% for category in categories %}
+        <li style="display: inline">
+            {{ category.name }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</section>
+</div>

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags blogapp_tags %}
+
+{% block body_class %}blog-page{% endblock %}
+{% block navigation %}
+{% include "navigation.html" %}
+{% endblock navigation %}
+<div class=container-fluid>
+    {% if self.header %}
+    {% block header %}
+    {% include_block self.header %}
+    {% endblock header %}
+    {% endif %}
+
+    {% block content %}
+    <main>
+        {% if self.search_term %}
+        <section class="search-results-section">
+            <div class="search_result_header">
+                <h2>Posts returned for {{ self.search_term }}:</h2>
+            </div>
+            <ul>
+                {% for post in posts %}
+                <li>
+                    <h3><a href="{% post_date_url post blog_page %}">{{ post.title }}</a></h3>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% else %}
+        {% with blocks=self.body %}
+        {% for block in blocks %}
+        {% if block.block_type == 'image' %}
+        {% image block.value width-900 class="img-fluid" %}
+        {% else %}
+        <section class="{{block.block_type}}-section mb-3">
+            {% include_block block %}
+        </section>
+        {% endif %}
+        {% endfor %}
+        {% endwith %}
+        <section class="post-list-section mb-3">
+            {% for post in posts %}
+            <h2><a href="{% post_date_url post blog_page %}">{{ post.title }}</a></h2>
+            {% endfor %}
+        </section>
+        {% endif %}
+    </main>
+    {% endblock content %}
+</div>

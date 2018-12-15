@@ -1,0 +1,67 @@
+{% load static wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailroutablepage_tags blogapp_tags %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit=no">
+    <title>
+        {% block title %}
+        {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+        {% endblock %}
+        {% block title_suffix %}
+        {% with self.get_site.site_name as site_name %}
+        {% if site_name %}- {{ site_name }}{% endif %}
+        {% endwith %}
+        {% endblock %}
+    </title>
+    <meta name="description" content="{% block meta_description %}{{ self.search_description }}{% endblock meta_description %}" />
+    <meta name="author" content="{% block meta_author %}{{page.owner.first_name}} {{page.owner.last_name}}{% endblock meta_author %}" />
+
+    {# Global stylesheets #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700i|Paytone+One:400" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}"> -->
+
+    {% block extra_css %}
+    {# Override this in templates to add extra stylesheets #}
+    {% endblock %}
+    <link rel="icon" href="https://nuljon.com/favicon.ico">
+</head>
+
+<body class="{% block body_class %}{% endblock %}" style="{% block body_style %}{% endblock %}">
+
+    {% wagtailuserbar %}
+
+    {% block navigation %}{% endblock %}
+
+
+    {% block header %}{% endblock %}
+    <div class="container-fluid">
+        {% block content %}{% endblock %}
+        {% block footer %}{% endblock %}
+    </div>
+
+    {# Global javascript #}
+    {% comment %} <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script> {% endcomment %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/WagtailCMS.js' %}"></script>
+
+    {% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+    {% endblock %}
+
+</body>
+
+</html>

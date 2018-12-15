@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags blogapp_tags i18n wagtailroutablepage_tags%}
+
+{% block body_class %}post-page{% endblock %}
+
+{% block navigation %}
+{% include "navigation.html" %}
+{% endblock navigation %}
+
+
+    {% if self.header %}
+    {% block header %}
+    {% include_block self.header %}
+    {% endblock header %}
+    {% endif %}
+
+    {% block content %}
+    <main>
+        {% with blocks=self.body %}
+        {% for block in blocks %}
+        <section class="{{block.block_type}}-section mb-3">
+            {% include_block block %}
+        </section>
+        {% endfor %}
+        {% endwith %}
+        <section class="mb-3">
+            <p><a href="{{ page.get_parent.url }}">BACK TO BLOG INDEX</a></p>
+        </section>
+    </main>
+    {% endblock content %}

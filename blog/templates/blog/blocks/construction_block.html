@@ -1,0 +1,21 @@
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags blogapp_tags %}
+
+{% with blocks=self %}
+
+
+{% for block in blocks %}
+{% if block.block_type == 'image' %}
+<section class="image-section mb-3 mx-3">
+    {% image block.value fill-1610x1000 class="img-fluid mx-auto" %}
+</section>
+{% elif block.block_type == 'author' %}
+<section class="author-section mb-3 mx-3">
+    {% author_profile %}
+</section>
+{% else %}
+<section class="{{block.block_type}}-section mb-3 mx-3">
+    {% include_block block %}
+</section>
+{% endif %}
+{% endfor %}
+{% endwith %}

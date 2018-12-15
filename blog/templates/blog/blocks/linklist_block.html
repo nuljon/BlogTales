@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+
+<div class="linklist-block">
+    <ul>
+        {% with links=self %}
+        {% for link in links %}
+        <li><a href="{{ link.url }}">{{ link.text }}</a></li>
+        {% endfor %}
+        {% endwith %}
+    </ul>
+</div>

@@ -1,0 +1,10 @@
+{% load wagtailcore_tags %}
+
+<div class="row">
+      <div class="column_1of2 col-12 col-md-6">
+            {% include_block self.left_column %}
+      </div>
+      <div class="column_2of2 col-12 col-md-6">
+            {% include_block self.right_column %}
+      </div>
+</div>
