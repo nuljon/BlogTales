@@ -52,6 +52,18 @@ p {
     max-width: 100%;
     height: auto;
 }
+div > input.btn.btn-primary {
+background-color: rgb(52, 58, 64);
+border-color: rgb(52, 58, 64);
+}
+blockquote {
+    text-align: center;
+    background-color: #9a9b9c;
+    padding: .5em;
+    font-family: 'libre', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 1.6em;
+}
 
 .responsive-object {
     position: relative;

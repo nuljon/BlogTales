@@ -21,7 +21,7 @@
     </title>
 
     <meta name="description" content="{% block meta_description %}{{ self.search_description }}{% endblock meta_description %}" />
-    <meta name="author" content="Jon Nuljon" />
+  {% comment %}   <meta name="author" content="{% block meta_author %}{{ page.owner.first_name }} {{ page.owner.last_name }}{% endblock meta_author %}" /> {% endcomment %}
 
 
     {% block extrahead %}
@@ -43,8 +43,10 @@
     {% block extra_css %}
     {# Override this in templates to add extra stylesheets #}
     {% endblock extra_css %}
+
     <link rel="icon" href="https://nuljon.com/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-3.3.1.js' %}"></script>
+    {% comment %} <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> {% endcomment %}
 </head>
 
 <body class="{% block body_class %}{% endblock %}" style="{% block body_style %}{% endblock %}">

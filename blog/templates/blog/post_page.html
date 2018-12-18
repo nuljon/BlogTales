@@ -1,5 +1,9 @@
-{% extends "base.html" %}
-{% load static comments wagtailcore_tags wagtailimages_tags wagtailembeds_tags blogapp_tags i18n wagtailroutablepage_tags%}
+{% extends "comments/base.html" %}
+{% load static %}
+{% load threadedcomments_tags fluent_comments_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags blogapp_tags %}
+{% load i18n %}
+{% load wagtailroutablepage_tags %}
 
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'fluent_comments/css/ajaxcomments.css' %}" />
@@ -12,15 +16,15 @@
 {% endblock navigation %}
 
 
-{% if self.header %}
+{% if page.header %}
 {% block header %}
-{% include_block self.header %}
+{% include_block page.header %}
 {% endblock header %}
 {% endif %}
 
 {% block content %}
 <main>
-    {% with blocks=self.body %}
+    {% with blocks=page.body %}
     {% for block in blocks %}
     <section class="{{block.block_type}}-section mb-3">
         {% include_block block %}
@@ -32,8 +36,24 @@
     </section>
 </main>
 <section class="comments">
-    {% render_comment_list for self %}
-    {% render_comment_form for self %}
+    <div class="container-fluid">
+        {% get_comment_count for page as comment_count %}
+        <div class="bg-dark p-2 mx-2 mb-1">
+            <h3 class="text-white">Comments ({{ comment_count }}):</h3>
+        </div>
+        {% get_comment_list for page as comment_list %}
+        {% for comment in comment_list %}
+        <div class="p-2 mx-2 mb-2 bg-secondary">
+            {{ comment }}
+        </div>
+        {% endfor %}
+        <div class="bg-dark p-2 mx-2 mb-1">
+            <h3 class="text-light">You are welcome to leave a comment:</h3>
+        </div>
+        <div class="bg-secondary pl-3 pr-2 py-2 mb-1 mx-2">
+            {% render_comment_form for page %}
+        </div>
+    </div>
 </section>
 {% block extra_js %}
 <script type="text/javascript" src="{% static 'fluent_comments/js/ajaxcomments.js' %}"></script>

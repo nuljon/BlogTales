@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'taggit',
     'taggit_templatetags2',
     'treebeard',
+    'threadedcomments',
     'fluent_comments',  # must be before django_comments
     'crispy_forms',
     'django_comments',
