@@ -12,15 +12,25 @@
     <title>
         {% block title %}
         {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-        {% endblock %}
+        {% endblock title %}
         {% block title_suffix %}
         {% with self.get_site.site_name as site_name %}
         {% if site_name %}- {{ site_name }}{% endif %}
         {% endwith %}
-        {% endblock %}
+        {% endblock title_suffix %}
     </title>
+
     <meta name="description" content="{% block meta_description %}{{ self.search_description }}{% endblock meta_description %}" />
-    <meta name="author" content="{% block meta_author %}{{page.owner.first_name}} {{page.owner.last_name}}{% endblock meta_author %}" />
+    <meta name="author" content="Jon Nuljon" />
+
+
+    {% block extrahead %}
+    {# Required for override by comments framework templates #}
+    {% endblock extrahead %}
+
+    {% block extra_head %}
+    {# Override in templates to add extra head tags without conflict with comments framework #}
+    {% endblock extra_head %}
 
     {# Global stylesheets #}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -32,8 +42,9 @@
 
     {% block extra_css %}
     {# Override this in templates to add extra stylesheets #}
-    {% endblock %}
+    {% endblock extra_css %}
     <link rel="icon" href="https://nuljon.com/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 </head>
 
 <body class="{% block body_class %}{% endblock %}" style="{% block body_style %}{% endblock %}">
@@ -49,14 +60,13 @@
         {% block footer %}{% endblock %}
     </div>
 
-    {# Global javascript #}
-    {% comment %} <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script> {% endcomment %}
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{% static 'js/WagtailCMS.js' %}"></script>
+    {% comment %} <script type="text/javascript" src="{% static 'js/WagtailCMS.js' %}"></script> {% endcomment %}
 
     {% block extra_js %}
     {# Override this in templates to add extra javascript #}

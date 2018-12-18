@@ -7,6 +7,7 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from taggit_templatetags2 import urls as taggit_templatetags2_urls
 
+
 from search import views as search_views
 
 urlpatterns = [
@@ -18,6 +19,11 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
 
     url(r'^tags/', include('taggit_templatetags2.urls')),
+
+
+    url(r'^comments/', include('django_comments.urls')),
+    url(r'^blog/comments/', include('fluent_comments.urls')),
+
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load comments i18n wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailroutablepage_tags blogapp_tags %}
+
+{% block meta-title %}
+{% block title %}{% trans "Responses for page" %}{% endblock title %}
+{% endblock meta-title %}
+
+{% block main %}
+<div id="comments-wrapper">
+    {% block content %}{% endblock content %}
+</div>
+{% endblock main %}

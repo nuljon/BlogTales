@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     'taggit',
     'taggit_templatetags2',
     'treebeard',
+    'fluent_comments',  # must be before django_comments
+    'crispy_forms',
+    'django_comments',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,7 +61,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
+
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -167,8 +172,14 @@ MEDIA_URL = '/media/'
 
 
 # Wagtail settings
-
 WAGTAIL_SITE_NAME = "blogtales"
+
+# Base URL to use when referring to full URLs within the Wagtail admin backend -
+# e.g. in notification emails. Don't include '/admin' or a trailing slash
+BASE_URL = 'http://example.com'
+
+
+# wagtail image processing - features rely on open cv2 nd numpy
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = True
 
 WAGTAIL_CODE_BLOCK_LANGUAGES = (
@@ -183,13 +194,29 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ('yaml', 'YAML'),
     ('cpp', 'C++')
 )
-# for taggit template tags
+
+##############################  configure TAGS and TAG CLOUD
+
 TAGGIT_CASE_INSENSITIVE = True
 # tag cloud limit default is 10
 TAGGIT_LIMIT = 150
 #tag cloud order by default is name
 TAGGIT_TAG_CLOUD_ORDER_BY = '-num_times'
 
-# Base URL to use when referring to full URLs within the Wagtail admin backend -
-# e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+
+####################### configure COMMENTS-FRAMEWORK
+
+COMMENTS_APP = 'fluent_comments'
+
+# display comment first and leave out any on FLUENT_COMMENTS_EXCLUDE_FIELDS or get key error
+# default field order is ('name', 'email', 'url', 'comment')
+FLUENT_COMMENTS_FIELD_ORDER = ('comment', 'name', 'email', 'url')
+
+# when rendering comment form hide the following field
+# if multiple fields hidden, single quote comma separated list enclosed in parantheses
+#FLUENT_COMMENTS_EXCLUDE_FIELDS = ('url')
+# crispy forms used by comments
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+####################### configure DJANGO SITES-FRAMEWORK - required by comments
+SITE_ID = 1

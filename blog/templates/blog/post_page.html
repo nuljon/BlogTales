@@ -1,5 +1,9 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags blogapp_tags i18n wagtailroutablepage_tags%}
+{% load static comments wagtailcore_tags wagtailimages_tags wagtailembeds_tags blogapp_tags i18n wagtailroutablepage_tags%}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'fluent_comments/css/ajaxcomments.css' %}" />
+{% endblock extra_css %}
 
 {% block body_class %}post-page{% endblock %}
 
@@ -8,23 +12,30 @@
 {% endblock navigation %}
 
 
-    {% if self.header %}
-    {% block header %}
-    {% include_block self.header %}
-    {% endblock header %}
-    {% endif %}
+{% if self.header %}
+{% block header %}
+{% include_block self.header %}
+{% endblock header %}
+{% endif %}
 
-    {% block content %}
-    <main>
-        {% with blocks=self.body %}
-        {% for block in blocks %}
-        <section class="{{block.block_type}}-section mb-3">
-            {% include_block block %}
-        </section>
-        {% endfor %}
-        {% endwith %}
-        <section class="mb-3">
-            <p><a href="{{ page.get_parent.url }}">BACK TO BLOG INDEX</a></p>
-        </section>
-    </main>
-    {% endblock content %}
+{% block content %}
+<main>
+    {% with blocks=self.body %}
+    {% for block in blocks %}
+    <section class="{{block.block_type}}-section mb-3">
+        {% include_block block %}
+    </section>
+    {% endfor %}
+    {% endwith %}
+    <section class="mb-3">
+        <p><a href="{{ page.get_parent.url }}">BACK TO BLOG INDEX</a></p>
+    </section>
+</main>
+<section class="comments">
+    {% render_comment_list for self %}
+    {% render_comment_form for self %}
+</section>
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'fluent_comments/js/ajaxcomments.js' %}"></script>
+{% endblock extra_js %}
+{% endblock content %}
