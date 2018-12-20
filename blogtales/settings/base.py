@@ -205,18 +205,63 @@ TAGGIT_LIMIT = 150
 TAGGIT_TAG_CLOUD_ORDER_BY = '-num_times'
 
 
-####################### configure COMMENTS-FRAMEWORK
+####################### configure COMMENTS-FRAMEWORK  #########################
+
+#######  fluent-comments default config values
+# AKISMET_API_KEY = None
+# AKISMET_BLOG_URL = None
+# AKISMET_IS_TEST = False
+# CRISPY_TEMPLATE_PACK = 'bootstrap'
+# FLUENT_COMMENTS_REPLACE_ADMIN = True
+###### #Akismet spam fighting
+# FLUENT_CONTENTS_USE_AKISMET = bool(AKISMET_API_KEY)
+# FLUENT_COMMENTS_AKISMET_ACTION = 'soft_delete'
+###### Moderation
+# FLUENT_COMMENTS_DEFAULT_MODERATOR = 'default'
+# FLUENT_COMMENTS_CLOSE_AFTER_DAYS = None
+# FLUENT_COMMENTS_MODERATE_BAD_WORDS = ()
+# FLUENT_COMMENTS_MODERATE_AFTER_DAYS = None
+# FLUENT_COMMENTS_USE_EMAIL_NOTIFICATION = True
+# FLUENT_COMMENTS_MULTIPART_EMAILS = False
+####### Form layouts
+# FLUENT_COMMENTS_FIELD_ORDER = ()
+# FLUENT_COMMENTS_EXCLUDE_FIELDS = ()
+# FLUENT_COMMENTS_FORM_CLASS = None
+# FLUENT_COMMENTS_FORM_CSS_CLASS = 'comments-form form-horizontal'
+# FLUENT_COMMENTS_LABEL_CSS_CLASS = 'col-sm-2'
+# FLUENT_COMMENTS_FIELD_CSS_CLASS = 'col-sm-10'
+####### Compact style settings
+# FLUENT_COMMENTS_COMPACT_FIELDS = ('name', 'email', 'url')
+# FLUENT_COMMENTS_COMPACT_GRID_SIZE = 12
+#FLUENT_COMMENTS_COMPACT_COLUMN_CSS_CLASS = "col-sm-{size}"
+####### end fluent-comments default config values
 
 COMMENTS_APP = 'fluent_comments'
 
-# display comment first and leave out any on FLUENT_COMMENTS_EXCLUDE_FIELDS or get key error
-# default field order is ('name', 'email', 'url', 'comment')
+# config fluent_comments FORM (*default)
+
+# FLUENT_COMMENTS_FORM_CLASS = 'fluent_comments.forms.DefaultCommentForm'*
+FLUENT_COMMENTS_FORM_CLASS = 'fluent_comments.forms.CompactCommentForm'
+# replace the labels with placeholders
+# FLUENT_COMMENTS_FORM_CLASS = 'fluent_comments.forms.CompactLabelsCommentForm'
+
+# assign or override classes to customize styles
+# FLUENT_COMMENTS_FORM_CSS_CLASS = 'comments-form form-horizontal'*
+FLUENT_COMMENTS_LABEL_CSS_CLASS = 'col-sm-2'
+# FLUENT_COMMENTS_FIELD_CSS_CLASS = 'col-sm-10'*
+
+# Optional settings for the compact style:
+FLUENT_COMMENTS_COMPACT_FIELDS = ('comment', 'name')
+FLUENT_COMMENTS_COMPACT_GRID_SIZE = 12
+FLUENT_COMMENTS_COMPACT_COLUMN_CSS_CLASS = 'col-sm-10'
+
+# display fields to render visible in order deisired
 FLUENT_COMMENTS_FIELD_ORDER = ('comment', 'name', 'email', 'url')
 
-# when rendering comment form hide the following field
-# if multiple fields hidden, single quote comma separated list enclosed in parantheses
-#FLUENT_COMMENTS_EXCLUDE_FIELDS = ('url')
-# crispy forms used by comments
+# alternatively, hide fields from rendeering
+# FLUENT_COMMENTS_EXCLUDE_FIELDS = ('email', 'url')
+
+# crispy forms template pack used by comments
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 ####################### configure DJANGO SITES-FRAMEWORK - required by comments
