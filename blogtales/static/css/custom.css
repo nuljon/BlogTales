@@ -13,13 +13,7 @@ body {
     padding-top:3.5rem;
     padding-bottom:0;
 }
-.bg-secodary {
-    background-color: rgb(235, 230, 230);
-}
-p {
-    text-align: justify;
-    text-justify: inter-character;
-}
+
 
 .jumbotron,
 .jumbotron-fluid {
