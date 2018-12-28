@@ -1,0 +1,7 @@
+{% load i18n wagtailcore_tags blogapp_tags wagtailroutablepage_tags %}
+
+<section class="post-list-section mb-3">
+    {% for post in posts %}
+    <h2><a href="{% post_date_url post blog_page %}">{{ post.title }}</a></h2>
+    {% endfor %}
+</section>

@@ -86,8 +86,7 @@ class BlogPage(RoutablePageMixin, Page):
     body = StreamField([('single_column', ConstructionBlock()),
                         ('column_w_sidebar', LeftColumnWithSidebarBlock()),
                         ('two_columns', TwoColumnBlock(icon="grip")),
-                        ('three_columns', ThreeColumnBlock(icon="table")
-                         ), ('flex_row', InlinedItemsBlock()),
+                        ('three_columns', ThreeColumnBlock(icon="table")),
                         ('flex_row', InlinedItemsBlock()), ], null=True, blank=True)
 
 
@@ -112,6 +111,10 @@ class BlogPage(RoutablePageMixin, Page):
 
     def get_posts(self):
         return PostPage.objects.descendant_of(self).live()
+
+    @property
+    def blog_page(self):
+        return self
 
     @route(r'^(\d{4})/$')
     @route(r'^(\d{4})/(\d{2})/$')

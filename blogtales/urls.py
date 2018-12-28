@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import include, path  # For django versions from 2.0 and up
-
+from filebrowser.sites import site
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
@@ -14,6 +14,7 @@ from search import views as search_views
 
 
 urlpatterns = [
+    path('admin/filebrowser/', site.urls),
     url(r'^django-admin/', admin.site.urls),
 
     url(r'^admin/', include(wagtailadmin_urls)),
@@ -26,6 +27,8 @@ urlpatterns = [
 
     url(r'^comments/', include('django_comments.urls')),
     url(r'^blog/comments/', include('fluent_comments.urls')),
+
+    url(r'^tinymce/', include('tinymce.urls')),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in

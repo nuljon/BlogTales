@@ -19,13 +19,18 @@
             <div class="search_result_header">
                 <h2>Posts returned for {{ self.search_term }}:</h2>
             </div>
+            {% if post %}
             <ul>
                 {% for post in posts %}
                 <li>
                     <h3><a href="{% post_date_url post blog_page %}">{{ post.title }}</a></h3>
                 </li>
-                {% endfor %}
             </ul>
+            {% endfor %}
+            {% else %}
+            <h3 class="px-2">sorry no post were found searching for: {{ self.search_term }}</h3>
+            {% endif %}
+
         </section>
         {% else %}
         {% with blocks=self.body %}
@@ -39,11 +44,12 @@
         {% endif %}
         {% endfor %}
         {% endwith %}
-        <section class="post-list-section mb-3">
+        {% include "blog/parts/post_list.html" %}
+       <!--  <section class="post-list-section mb-3">
             {% for post in posts %}
             <h2><a href="{% post_date_url post blog_page %}">{{ post.title }}</a></h2>
             {% endfor %}
-        </section>
+        </section> -->
         {% endif %}
     </main>
     {% endblock content %}

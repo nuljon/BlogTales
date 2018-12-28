@@ -4,7 +4,18 @@
 {% load wagtailroutablepage_tags blogapp_tags %}
 
 {% block meta-title %}
-{% block title %}{% trans "Responses for page" %}{% endblock title %}
+
+<title>
+    {% block title %}
+    {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+    {% endblock title %}
+    {% block title_suffix %}
+    {% with self.get_site.site_name as site_name %}
+    {% if site_name %}- {{ site_name }}{% endif %}
+    {% endwith %}
+    {% endblock title_suffix %}
+</title>
+
 {% endblock meta-title %}
 
 {% block main %}

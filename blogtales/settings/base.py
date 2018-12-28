@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'search',
     'blog',
     'colorblock',
+    'thewall',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.core',
 
+    'tinymce',
     'modelcluster',
     'taggit',
     'taggit_templatetags2',
@@ -58,6 +60,7 @@ INSTALLED_APPS = [
     'fluent_comments',  # must be before django_comments
     'crispy_forms',
     'django_comments',
+    'filebrowser',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -66,13 +69,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'debug_toolbar',
-    'debugtools',
+#    'debug_toolbar',
+#    'debugtools',
+
+
 ]
 
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,16 +102,17 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
+               # 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'wagtailmenus.context_processors.wagtailmenus',
                 'django.template.context_processors.static',
+                #"""  ],
+                # 'builtins': [                                     # Add this section
+                #   "debugtools.templatetags.debugtools_tags",   # Add this line """
             ],
-            'builtins': [                                     # Add this section
-                "debugtools.templatetags.debugtools_tags",   # Add this line
-            ],
+
         },
     },
 ]
@@ -216,7 +222,7 @@ TAGGIT_LIMIT = 150
 TAGGIT_TAG_CLOUD_ORDER_BY = '-num_times'
 
 
-####################### configure COMMENTS-FRAMEWORK  #########################
+####################### configure COMMENTS-FRAMEWORK  ######################
 
 #######  fluent-comments default config values
 # AKISMET_API_KEY = None
@@ -277,3 +283,16 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 ####################### configure DJANGO SITES-FRAMEWORK - required by comments
 SITE_ID = 1
+
+
+###################### configure DJANGO FILEBROWSER
+
+# Main FileBrowser Directory. Leave empty in order to
+# browse all files and folders within a storage location:
+# FILEBROWSER_DIRECTORY = "uploads/"  # default
+
+
+
+# Directory to save image versions (and thumbnails). If no directory is
+# given, versions are stored at the same location as the original image:
+FILEBROWSER_VERSIONS_BASEDIR = "_versions"

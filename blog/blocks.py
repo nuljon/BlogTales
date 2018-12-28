@@ -41,6 +41,7 @@ class PageHeadingBlock(blocks.StructBlock):
         icon = 'title'
         label = 'Page Heading'
         help_text = 'For best SEO result, match all the titles.'
+        max_num = 1
 
 
 class JumbotronBlock(StructBlock):
@@ -53,6 +54,7 @@ class JumbotronBlock(StructBlock):
         template = 'blog/blocks/jumbotron_block.html'
         icon = 'image'
         label = 'Jumbotron Header'
+        max_num = 1
 
 class PageHeaderBlock(blocks.StreamBlock):
     page_header = PageHeadingBlock()
@@ -124,7 +126,7 @@ class QuickLinkBlock(StructBlock):
     external_url = URLBlock(label='external URL', required=False)
 
     class Meta:
-        template: 'blog/blocks/quick_link_block.html'
+        template = 'blog/blocks/quick_link_block.html'
         icon = 'site'
         value_class = LinkStructValue
 
