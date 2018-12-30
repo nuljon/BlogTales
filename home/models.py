@@ -17,7 +17,7 @@ from blog.models import LandingPage
 
 
 class HomePage(Page):
-    subpage_types = ['blog.LandingPage', 'blog.BlogPage']
+    subpage_types = ['blog.LandingPage', 'blog.BlogPage', 'thewall.WallPage']
     body = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [

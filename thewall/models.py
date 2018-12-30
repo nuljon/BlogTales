@@ -1,10 +1,9 @@
 from __future__ import unicode_literals
-from astroid import objects
 import datetime
 from datetime import date
 
 import wagtail
-
+from astroid import objects
 from django import forms
 from django.conf.global_settings import AUTH_USER_MODEL
 from django.contrib.auth.models import User
@@ -19,7 +18,7 @@ from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.models import ClusterableModel
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import Tag as TaggitTag, TaggedItemBase
-from tinymce import HTMLField, TinyMCE
+from tinymce import AdminTinyMCE, HTMLField, TinyMCE
 from wagtail import users
 from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel, \
     InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
@@ -62,19 +61,20 @@ class WallPage(RoutablePageMixin, Page):
     """
     """
     eventually, I think content will need to be manged from a form or maybe django admin. Unless I can get the bricks to work in wagtail with ModelAdmin and ModelCluster
-        content_panels = Page.content_panels + [
+    """
+    content_panels = Page.content_panels + [
         StreamFieldPanel('header'),
         StreamFieldPanel('body')
-    ] """
+    ]
 
     def get_context(self, request, *args, **kwargs):
         context = super(WallPage, self).get_context(request, *args, **kwargs)
-        context['bricks'] = self.bricks.all
+        context['bricks'] = self.get_bricks()
         context['wall_page'] = self
         context['search_type'] = getattr(self, 'search-type', "")
         context['search_term'] = getattr(self, 'search-term', "")
-        """
         context['page_author'] = self.owner
+        """
         'page_author' doesn't really make sense except in regards permissions and self.owner is probably sufficient. Do we need 'page_authors', as in a list of brick authors, whereby the bricks are those posts that comprise the wall_page? Probably, but rather for use in seaching bricks by brick_author
         """
         return context
@@ -83,8 +83,7 @@ class WallPage(RoutablePageMixin, Page):
    we may use descendant_of we will if get MPT of some sort working for bricks
    """
     def get_bricks(self):
-        self.bricks=Brick.objects.all
-        return self.bricks
+        return Brick.objects.all()
 
 
     @route(r'^(\d{4})/$')
@@ -147,23 +146,35 @@ class WallPage(RoutablePageMixin, Page):
             self.search_type = 'search'
         return Page.serve(self, request, *args, **kwargs)
 
-
+@register_snippet
 class Brick(models.Model):
-    name = models.CharField('Name',max_length=255,blank=True)
-    wall_page = ParentalKey(WallPage, related_name='bricks', on_delete=models.CASCADE)
+    wall_page = ParentalKey(
+         WallPage, related_name='bricks', on_delete=models.CASCADE)
+    name = models.CharField('Name', max_length=255, blank=True)
     date = models.DateTimeField(
         verbose_name="Date", default=datetime.datetime.today)
-
+    title = models.CharField('Title', max_length=255, default='My Title')
     content = HTMLField('Content', blank=True)
     author = models.CharField('Author', max_length=255, default='anonymous')
 
-    def __init__(self, *args, **kwargs):
-        super(Brick, self).__init__(*args, **kwargs)
-
-    def __repr__(self):
-        return {'name':self.name, 'wall_page': self.wall_page, 'date': self.date, 'content':self.content }
     def __str__(self):
-        return 'Brick(wall_page='+self.wall_page+', date='+str(self.date)+ ')'
+        return '%s' % self.name
+
+    @property
+    def get_wall_pages(self):
+        return WallPage.objects.all()
+
+    """
+    def get_context(self, request, *args, **kwargs):
+        context = super(Brick, self).get_context(
+            request, *args, **kwargs)
+        context['author'] = self.author
+        context['wall_page'] = self.wall_page
+        return context """
+
+    class Meta:
+        verbose_name = "Wall Message"
+        verbose_name_plural = "Wall Messages"
 
 
 

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+
+{% block body_class %}thewall-page{% endblock %}
+
+<div class=container-fluid>
+    {% if page.header %}
+    {% block header %}
+    {% include_block page.header %}
+    {% endblock header %}
+    {% endif %}
+
+    {% block content %}
+    <main>
+        {% if page.search_term %}
+        <section class="search-results-section">
+            <div class="search_result_header">
+                <h2>Bricks returned for {{ page.search_term }}:</h2>
+            </div>
+            {% if brick %}
+            <ul>
+                {% for brick in bricks %}
+                <li>
+                    {% include "thewall/parts/brick.html" %}
+                </li>
+            </ul>
+            {% endfor %}
+            {% else %}
+            <h3 class="px-2">sorry no bricks were found searching for: {{ self.search_term }}</h3>
+            {% endif %}
+
+        </section>
+        {% else %}
+
+        {% with blocks=page.body %}
+        {% for block in blocks %}
+        {% if block.block_type == 'image' %}
+        {% image block.value width-900 class="img-fluid" %}
+        {% else %}
+        <section class="{{block.block_type}}-section mb-3">
+            {% include_block block %}
+        </section>
+        {% endif %}
+        {% endfor %}
+        {% endwith %}
+        <div class="thewall-create-brick text-center">
+            <a href="{% url 'brick_new' %}"><i class="fas fa-sticky-note"></i>CREATE NEW POST</a>
+        </div>
+        {% include "thewall/parts/brick.html" %}
+        {% endif %}
+
+    </main>
+    {% endblock content %}
+</div>

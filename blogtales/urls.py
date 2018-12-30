@@ -7,6 +7,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from taggit_templatetags2 import urls as taggit_templatetags2_urls
+from thewall import views
 
 
 from search import views as search_views
@@ -27,6 +28,8 @@ urlpatterns = [
 
     url(r'^comments/', include('django_comments.urls')),
     url(r'^blog/comments/', include('fluent_comments.urls')),
+    path('thewall/brick/new', views.brick_new, name='brick_new'),
+    path('thewall/<int:pk>/', views.brick_detail, name='brick_detail'),
 
     url(r'^tinymce/', include('tinymce.urls')),
 

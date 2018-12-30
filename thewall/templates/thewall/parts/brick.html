@@ -1,0 +1,10 @@
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags%}
+
+
+<section class="bricks">
+{% for brick in page.bricks.all %}
+<div class="brick">
+{{ brick.content|safe }}
+</div>
+{% endfor %}
+</section>
