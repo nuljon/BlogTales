@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
-{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags crispy_forms_tags %}
 
 {% block extra_head %}
 {{ form.media }}
 {% endblock extra_head %}
 
 {% block content %}
-    <h2>New post</h2>
+<div class="container-fluid">
+        <h1 class="display-4 text-center">{{ brick.title }}</h1>
+    <h2>Message Editor</h2>
     <form method="POST" class="brick-form">{% csrf_token %}
-        {{ form.as_p }}
+{{ form.title|as_crispy_field }}
+{{ form.content|as_crispy_field }}
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 {% endblock %}

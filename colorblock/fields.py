@@ -67,4 +67,6 @@ class ColorField(CharField):
             if value.startswith('#'):
                 return value[1:]
             return value
-        return str(value)
+        # return str(value)
+        # or should it be
+        return self.prepare_value(str(value))

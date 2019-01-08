@@ -44,7 +44,7 @@
         {% endfor %}
         {% endwith %}
         <div class="thewall-create-brick text-center">
-            <a href="{% url 'brick_new' %}"><i class="fas fa-sticky-note"></i>CREATE NEW POST</a>
+            <a href="{% url 'brick_new' page.id %}"><button type="button" class="btn btn-secondary">New Message</button></a>
         </div>
         {% include "thewall/parts/brick.html" %}
         {% endif %}

@@ -7,7 +7,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from taggit_templatetags2 import urls as taggit_templatetags2_urls
-from thewall import views
+from thewall import views as wall_views
 
 
 from search import views as search_views
@@ -23,15 +23,16 @@ urlpatterns = [
 
     url(r'^search/$', search_views.search, name='search'),
 
-    url(r'^tags/', include('taggit_templatetags2.urls')),
-
-
     url(r'^comments/', include('django_comments.urls')),
     url(r'^blog/comments/', include('fluent_comments.urls')),
-    path('thewall/brick/new', views.brick_new, name='brick_new'),
-    path('thewall/<int:pk>/', views.brick_detail, name='brick_detail'),
 
+    path('brick/new/<int:wall_page>/', wall_views.brick_new, name='brick_new'),
+    path('brick/<int:pk>/', wall_views.brick_detail, name='brick_detail'),
+    path('brick/edit/<int:pk>/', wall_views.brick_edit, name='brick_edit'),
     url(r'^tinymce/', include('tinymce.urls')),
+
+    # url(r'^tags/', include('taggit_templatetags2.urls')),
+
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
