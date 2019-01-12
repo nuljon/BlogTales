@@ -12,12 +12,32 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from decouple import config, Csv
 
 from django.conf.global_settings import INTERNAL_IPS
+from unipath import Path
+#import dj_database_url
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = Path(__file__).parent
+
+SECRET_KEY = config('SECRET_KEY')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+DEBUG = config('DEBUG', default=True, cast=bool)
+
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', cast=int),
+    }
+}
 
 
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -120,15 +140,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'blogtales.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
