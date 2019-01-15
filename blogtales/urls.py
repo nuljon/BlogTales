@@ -8,6 +8,8 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from taggit_templatetags2 import urls as taggit_templatetags2_urls
 from thewall import views as wall_views
+from thewall.models import Brickmaker
+from . import views
 
 
 from search import views as search_views
@@ -29,17 +31,23 @@ urlpatterns = [
     path('brick/new/<int:wall_page>/', wall_views.brick_new, name='brick_new'),
     path('brick/<int:pk>/', wall_views.brick_detail, name='brick_detail'),
     path('brick/edit/<int:pk>/', wall_views.brick_edit, name='brick_edit'),
-    url(r'^tinymce/', include('tinymce.urls')),
+
+    path('signup/', views.signup, name='signup'),
+  # path('secret/', views.secret_page, name='secret'),
+  #  path('secret2/', views.SecretPage.as_view(), name='secret2'),
+  # path('accounts/', include('django.contrib.auth.urls')),
+    path('tinymce/', include('tinymce.urls')),
 
     # url(r'^tags/', include('taggit_templatetags2.urls')),
+
+    path('brickmaker/new/<str:user>', wall_views.BrickmakerCreateView.as_view(),
+         name='BrickmakerCreateView'),
 
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
-    url(r'', include(wagtail_urls))
-
-
+    url(r'', include(wagtail_urls), name='home')
 
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:

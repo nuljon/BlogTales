@@ -6,15 +6,9 @@ from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.views.generic import CreateView
 from .models import Brickmaker
-""" from django.views.generic import ListView
-from books.models import Book
+from django.contrib.auth.forms import UserCreationForm
 
 
-class BookList(ListView):
-    queryset = Book.objects.order_by('-publication_date')
-    context_object_name = 'book_list'
-
- """
 class BrickmakerCreateView(CreateView):
     model = Brickmaker
     fields = ('user', 'avatar_image', 'bio')

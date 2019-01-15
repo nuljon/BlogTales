@@ -91,6 +91,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 #    'debug_toolbar',
 #    'debugtools',
+    'social_django',
 
 
 ]
@@ -108,6 +109,8 @@ MIDDLEWARE = [
 
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 
 ]
 
@@ -128,6 +131,10 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'wagtailmenus.context_processors.wagtailmenus',
                 'django.template.context_processors.static',
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+
                 #"""  ],
                 # 'builtins': [                                     # Add this section
                 #   "debugtools.templatetags.debugtools_tags",   # Add this line """
@@ -139,7 +146,41 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blogtales.wsgi.application'
 
+####################################### user auth configs
 
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
+# config for social auth librry
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
+
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+#SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [...]
+
+SOCIAL_AUTH_FACEBOOK_KEY = ''
+SOCIAL_AUTH_FACEBOOK_SECRET = ''
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'locale': 'us_US',
+    'fields': 'id, name, email, age_range'
+}
+
+SOCIAL_AUTH_INSTAGRAM_KEY = ''
+SOCIAL_AUTH_INSTAGRAM_SECRET = ''
+SOCIAL_AUTH_INSTAGRAM_AUTH_EXTRA_ARGUMENTS = {
+    'scope': 'likes comments relationships'}
 
 
 # Password validation
@@ -159,7 +200,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -300,7 +340,7 @@ SITE_ID = 1
 
 # Main FileBrowser Directory. Leave empty in order to
 # browse all files and folders within a storage location:
-# FILEBROWSER_DIRECTORY = "uploads/"  # default
+FILEBROWSER_DIRECTORY = "uploads/"  # default
 
 
 
