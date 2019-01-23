@@ -9,11 +9,12 @@ body {
     background-color: #fff;
 }
 
-.blog-page, .post-page {
+.blog-page,
+.post-page,
+.brickmaker-profile {
     padding-top:3.5rem;
     padding-bottom:0;
 }
-
 
 .jumbotron,
 .jumbotron-fluid {

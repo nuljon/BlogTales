@@ -6,14 +6,14 @@
 <section class="brick-detail">
     <div class="container-fluid">
         <div class="title">
-            <h1 class="display-4 text-center">{{ brick.title }}</h1>
+            <h3>{{ brick.title }}</h3>
         </div>
-        <div class="brick-content">
+        <div class="brick">
             {{ brick.content|safe }}
         </div>
         <div class="d-flex flex-wrap justify-content-around">
             <a class="btn btn-secondary active px-2" href="#">view MESSAGE</a>
-            <a class="btn btn-secondary px-2" href="/wall">view WALL</button></a>
+            <a class="btn btn-secondary px-2" href="/graffiti">view WALL</button></a>
             <a class="btn btn-secondary px-2" href="{% url 'brick_edit' pk=brick.pk %}">edit MESSAGE</a>
         </div>
     </div>

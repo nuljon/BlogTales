@@ -1,0 +1,10 @@
+<section class="user-profile-messages-section">
+    <div class="message-list">
+        <h2>Your posted messages:</h2>
+        <ul>
+            {% for brick in model.bricks.all %}
+            <li>{{brick.title}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>

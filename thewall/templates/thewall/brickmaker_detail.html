@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags%}
+
+{% block body_class %}brickmaker-profile{% endblock %}
+{% block navigation %}
+{% include "thewall/parts/navigation.html" %}
+{% endblock navigation %}
+
+{% if page.header %}
+{% block header %}
+{% include_block page.header %}
+{% endblock header %}
+{% endif %}
+
+{% block content %}
+<main>
+    {% if model.user %}
+    {% include "thewall/parts/brickmaker_profile.html" %}
+    {% endif %}
+    {% if model.bricks %}
+    {% include "thewall/parts/bricks_list.html" %}
+    {% endif %}
+</main>
+{% endblock content %}

@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.text import slugify
 
 
 """ from django.views.generic import ListView
@@ -34,11 +35,15 @@ def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.username
-            return redirect('BrickmakerCreateView', username)
-    form = UserCreationForm()
+            user = form.save()
+            pk=user.id
+            return redirect('BrickmakerUpdate', pk)
+
+    else:
+        form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
 
 
 @login_required

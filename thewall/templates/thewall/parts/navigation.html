@@ -1,0 +1,50 @@
+{% load static wagtailcore_tags blogapp_tags wagtailroutablepage_tags %}
+
+<!-- Navigation -->
+
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark"><a class="navbar-brand" href="http://nuljon.com">{<img
+            class="logo" src="{% static 'assets/logo-inverse.png' %}" alt="nuljon.com logo" />} nuljon.com</a>
+    <!-- <a class="navbar-brand" href="http://nuljon.com">{ }JON.com</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nuljon-nav" aria-controls="nuljon.com navigation bar"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nuljon-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                {% url 'home' as home_url %}
+                {% if home_url %}
+                <a class="nav-link" href="/">Home</a>
+                {% else %}
+                <a class="nav-link" href="/">Home</a>
+                {% endif %}
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/graffiti">Graffiti</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="accountDropdown">
+                    <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                    <a class="dropdown-item" href=" {% url 'password_change' %}">Change Password</a>
+
+                </div>
+            </li>
+            <li class="nav-item flex-grow-1">
+                {% if user.username %}
+                <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                {% else %}
+                <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                {% endif %}
+            </li>
+
+        </ul>
+        <div class="d-inline text-right text-light">
+            Welcome {% if user.is_authenticated %}{{user.username}} {% else %} anonymous {% endif %}
+        </div>
+
+    </div>
+</nav>

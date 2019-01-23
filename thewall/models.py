@@ -1,34 +1,41 @@
 from __future__ import unicode_literals
+
 import datetime
 from datetime import date
 
 import wagtail
-from django.conf import settings
 from astroid import objects
 from django import forms
+from django.conf import settings
 from django.conf.global_settings import AUTH_USER_MODEL
 from django.contrib.auth.forms import UsernameField
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import ForeignKey
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.forms.fields import CharField
 from django.http import Http404, HttpResponse
 from django.template.defaultfilters import first
+
+from django.urls.base import reverse_lazy
 from django.utils.dateformat import DateFormat
 from django.utils.formats import date_format
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.models import ClusterableModel
 from modelcluster.tags import ClusterTaggableManager
-from taggit.models import Tag as TaggitTag, TaggedItemBase
+from taggit.models import Tag as TaggitTag
+from taggit.models import TaggedItemBase
 from tinymce import AdminTinyMCE, HTMLField, TinyMCE
 from wagtail import users
-from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel, \
-    InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel,
+                                         InlinePanel, MultiFieldPanel,
+                                         PageChooserPanel, StreamFieldPanel)
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core import blocks
-from wagtail.core.blocks import CharBlock, PageChooserBlock, StructBlock, \
-    StructValue, TextBlock, URLBlock
+from wagtail.core.blocks import (CharBlock, PageChooserBlock, StructBlock,
+                                 StructValue, TextBlock, URLBlock)
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.embeds.blocks import EmbedBlock
@@ -37,11 +44,10 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.fields import WagtailImageField
 from wagtail.snippets.models import register_snippet
 
-from blog.blocks import ConstructionBlock, InlinedItemsBlock, JumbotronBlock, \
-    LeftColumnWithSidebarBlock, PageHeaderBlock, PageHeadingBlock, \
-    SearchBlock, SidebarBlock, ThreeColumnBlock, TwoColumnBlock
-from django.db.models import ForeignKey
-
+from blog.blocks import (ConstructionBlock, InlinedItemsBlock, JumbotronBlock,
+                         LeftColumnWithSidebarBlock, PageHeaderBlock,
+                         PageHeadingBlock, SearchBlock, SidebarBlock,
+                         ThreeColumnBlock, TwoColumnBlock)
 
 
 class WallPage(RoutablePageMixin, Page):
@@ -144,7 +150,6 @@ class WallPage(RoutablePageMixin, Page):
 
     @route(r'^$')
     def bricks_in_the_wall(self, request, *args, **kwargs):
-
         return Page.serve(self, request, *args, **kwargs)
 
     @route(r'^search/$')
@@ -162,11 +167,14 @@ class WallPage(RoutablePageMixin, Page):
 @register_snippet
 class Brickmaker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='avatar_images', blank=True)
+    avatar_image = models.ImageField(upload_to='avatar_images', blank=True)
     bio = HTMLField(blank=True)
 
     def __str__(self):
         return self.user.username
+
+    def get_absolute_url(self):
+        return reverse_lazy('BrickmakerDetail', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Message Author"
@@ -186,7 +194,7 @@ def save_brickmaker(sender, instance, **kwargs):
 # we will refer to the individual wall messages as bricks
 class BrickManager(models.Manager):
     def create_brick(self, wall_page, **kwargs):
-        brick = self.create(wall_page=WallPage.objects.get(id=wall_page))
+        brick = self.create(wall_page=WallPage.objects.get(bid=wall_page))
         return brick
 
 @register_snippet
@@ -239,8 +247,3 @@ class Brick(models.Model):
     class Meta:
         verbose_name = "Wall Message"
         verbose_name_plural = "Wall Messages"
-
-
-
-
-

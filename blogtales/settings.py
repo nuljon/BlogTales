@@ -148,8 +148,8 @@ WSGI_APPLICATION = 'blogtales.wsgi.application'
 
 ####################################### user auth configs
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/brickmaker/profile/'
+LOGOUT_REDIRECT_URL = '/'
 
 # config for social auth librry
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True

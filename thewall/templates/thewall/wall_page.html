@@ -2,7 +2,9 @@
 {% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
 
 {% block body_class %}thewall-page{% endblock %}
-
+{% block navigation %}
+{% include "thewall/parts/navigation.html" %}
+{% endblock navigation %}
 <div class=container-fluid>
     {% if page.header %}
     {% block header %}
