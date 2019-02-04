@@ -11,6 +11,7 @@ local_settings.py
 db.sqlite3
 media
 
+
 ### wagtail ###
 
 
@@ -143,11 +144,12 @@ pyvenv.cfg
 pip-selfcheck.json
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+.vscode
+*.vscode/*
+##.vscode/settings.json
+#.vscode/tasks.json
+#.vscode/launch.json
+#.vscode/extensions.json
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -177,3 +179,4 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/python,django,windows,visualstudiocode
 
+.vscode/settings.json

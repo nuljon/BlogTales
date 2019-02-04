@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block navigation %}
+{% include "thewall/parts/navigation.html" %}
+{% endblock %}
+{% block content %}
+<div class="mt-5 pt-5">
+    <h2>Please Log Into Your User Account</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-outline-success">Log In</button>
+    </form>
+<p class="py-4"><a class="btn btn-outline-secondary" href=" {% url 'password_reset' %}">I Fogot My Password</a> <a class="btn btn-outline-secondary"
+            href=" {% url 'signup' %}">Sign Up For Account</a></p>
+</div>
+{% endblock %}

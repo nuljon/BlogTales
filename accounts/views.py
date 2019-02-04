@@ -10,6 +10,8 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.text import slugify
 
+from .forms import CreateNewFrontendUser
+
 
 """ from django.views.generic import ListView
 from books.models import Book
@@ -33,14 +35,14 @@ def home(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CreateNewFrontendUser(request.POST)
         if form.is_valid():
             user = form.save()
             pk=user.id
             return redirect('BrickmakerUpdate', pk)
 
     else:
-        form = UserCreationForm()
+        form = CreateNewFrontendUser()
     return render(request, 'registration/signup.html', {'form': form})
 
 

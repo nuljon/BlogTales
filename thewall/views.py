@@ -4,8 +4,10 @@ from urllib import request
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.forms.models import *
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.text import slugify
 from django.views.generic.base import RedirectView, TemplateView, View
@@ -17,19 +19,18 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, DeleteView, FormView,
                                        UpdateView)
 from django.views.generic.list import ListView
-
+from thewall.forms import BrickForm, BrickmakerForm
 from thewall.models import Brick, Brickmaker, WallPage
-
-from .forms import BrickForm, BrickmakerForm
 
 
 class BrickmakerUpdate(LoginRequiredMixin, UpdateView):
     model = Brickmaker
-    fields = '__all__'
+    form_class = BrickmakerForm
     template_name = 'thewall/brickmaker_update.html'
+    success_url = reverse_lazy('Brickmaker')
 
     #def get_context_data(self, request, **kwargs):
-    #    context = super().get_context_data(**kwargs)
+    #    context = super(get_context_data(**kwargs)
     #    context['user'] = request.user
 
     #    return render(request, self.template_name, {'context': context})
@@ -43,18 +44,33 @@ class BrickmakerUpdate(LoginRequiredMixin, UpdateView):
     #    return render(request, self.template_name, {'form': form})
 
 
-class BrickmakerFormView(FormView):
+class BrickmakerEdit(LoginRequiredMixin, UpdateView):
     model = Brickmaker
     form_class = BrickmakerForm
-    #form = BrickmakerForm
-    fields = ('user', 'avatar_image', 'bio')
-    template_name = 'brickmaker_edit.html'
+    template_name_suffix = '_form'
+    success_url = reverse_lazy('BrickmakerDetail', pk=model.id)
 
-    def get(self, request, *args, **kwargs):
-        form = self.form_class(user=request.user)
+    """ def get(self, request, *args, **kwargs):
+        if 'pk' in kwargs:
+            pk = kwargs['pk']
+            model = get_object_or_404(Brickmaker, pk=pk)
+
+        else:
+            model = get_object_or_404(Brickmaker, user=request.user)
+
+
+        data = model_to_dict(model,('user','avatar_image','bio'))
+        form = self.form_class(data)
+
+        return render(request, 'thewall/brickmaker_edit_form.html', {'form': form, 'data': data})
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            brickmaker=form.save()
+            return HttpResponseRedirect('BrickmakerDetail', pk=brickmaker.id)
         return render(request, self.template_name, {'form': form})
-
-
+ """
 
 
 class BrickmakerDetail(DetailView):
@@ -69,6 +85,8 @@ class BrickmakerDetail(DetailView):
 
         else:
             model = get_object_or_404(Brickmaker, user=request.user)
+        if model.bio == '':
+            return redirect('BrickmakerUpdate',pk = model.pk)
 
         return render(request, self.template_name, {'model': model})
 
@@ -96,6 +114,7 @@ def brick_new(request, wall_page):
             brick.author = request.user
             brick.date = timezone.now()
             brick.name = '%s-%s-%s' % (brick.date, brick.author, brick.title)
+            brick.is_active = True
             brick.save()
             return redirect('brick_detail', pk=brick.pk)
     else:

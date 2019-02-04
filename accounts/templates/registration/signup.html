@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% block extra_head %}
+{{ form.media }}
+{% endblock extra_head %}
 {% block navigation %}
 {% include "thewall/parts/navigation.html" %}
 {% endblock %}
 {% block content %}
 <div class="mt-5 pt-5">
-    <h2>Please Log Into Your User Account</h2>
+    <h2>Please Sign Up For A User Account</h2>
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit">Log In</button>
+        <button class="btn btn-outline-sucess" type="submit">Sign Up</button>
     </form>
 </div>
 {% endblock %}

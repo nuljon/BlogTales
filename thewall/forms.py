@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, HiddenInput
 
 from thewall.models import Brick, Brickmaker
 
@@ -9,6 +9,10 @@ class BrickForm(ModelForm):
         fields = ('title', 'content')
 
 class BrickmakerForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(BrickmakerForm, self).__init__(*args, **kwargs)
+        self.fields['user'].widget = HiddenInput()
     class Meta:
         model = Brickmaker
         fields = ('user', 'avatar_image', 'bio')

@@ -25,7 +25,12 @@ SECRET_KEY = config('SECRET_KEY')
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 DEBUG = config('DEBUG', default=True, cast=bool)
 
+EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -47,6 +52,8 @@ DATABASES = {
 # Application definition
 
 INSTALLED_APPS = [
+    'django_extensions',
+    'accounts',
     'home',
     'search',
     'blog',
@@ -131,6 +138,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'wagtailmenus.context_processors.wagtailmenus',
                 'django.template.context_processors.static',
+                'django.template.context_processors.media',
 
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
@@ -147,11 +155,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'blogtales.wsgi.application'
 
 ####################################### user auth configs
-
-LOGIN_REDIRECT_URL = '/brickmaker/profile/'
+LOGIN_URL = 'account/login'
+LOGOUT_URL = 'account/logout'
+LOGIN_REDIRECT_URL = '/brickmaker/'
 LOGOUT_REDIRECT_URL = '/'
 
-# config for social auth librry
+# config for social auth library
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 
 AUTHENTICATION_BACKENDS = (
@@ -245,7 +254,7 @@ WAGTAIL_SITE_NAME = "blogtales"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+BASE_URL = 'http://localhost:8000'
 
 
 # wagtail image processing - features rely on open cv2 nd numpy

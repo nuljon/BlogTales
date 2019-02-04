@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 import datetime
+from builtins import property
 from datetime import date
 
 import wagtail
@@ -17,7 +18,6 @@ from django.dispatch import receiver
 from django.forms.fields import CharField
 from django.http import Http404, HttpResponse
 from django.template.defaultfilters import first
-
 from django.urls.base import reverse_lazy
 from django.utils.dateformat import DateFormat
 from django.utils.formats import date_format
@@ -163,11 +163,15 @@ class WallPage(RoutablePageMixin, Page):
         return Page.serve(self, request, *args, **kwargs)
 
 # lets make some brickmakers, aka Messsage Authors, who can logon and manage their bricks.
+# define a location for users to store their files
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'user_{0}/{1}'.format(instance.user.id, filename)
 # extend django User for Message Author, referred to as as Brickmaker
 @register_snippet
 class Brickmaker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar_image = models.ImageField(upload_to='avatar_images', blank=True)
+    avatar_image = models.ImageField(upload_to=user_directory_path, blank=True)
     bio = HTMLField(blank=True)
 
     def __str__(self):
@@ -194,7 +198,7 @@ def save_brickmaker(sender, instance, **kwargs):
 # we will refer to the individual wall messages as bricks
 class BrickManager(models.Manager):
     def create_brick(self, wall_page, **kwargs):
-        brick = self.create(wall_page=WallPage.objects.get(bid=wall_page))
+        brick = self.create(wall_page=WallPage.objects.get(pk=wall_page))
         return brick
 
 @register_snippet
@@ -222,7 +226,8 @@ class Brick(models.Model):
         on_delete=models.SET_NULL,
         related_name='authored_bricks'
     )
-    objects = BrickManager()
+
+    is_active = models.BooleanField('Active', default=True)
 
 
     def __str__(self):
@@ -234,15 +239,16 @@ class Brick(models.Model):
     """
     I am not sure if we will need a bricks get_context method here, but we probably will need it in the BrickmakerPage model for frontend admin of bricks
 """
-    def get_context(self, request, *args, **kwargs):
-        context = super(Brick, self).get_context(request, **kwargs)
-        context['wall_page'] = self.wall_page
-        context['name'] = self.name
-        context['date'] = self.date
-        context['title'] = self.title
-        context['content'] = self.content
-        context['author'] = self.author
-        return (request,context)
+    def get_context_data(self, request, **kwargs):
+            context = super(Brick, self).get_context_data(**kwargs)
+            context['wall_page'] = self.wall_page
+            context['name'] = self.name
+            context['date'] = self.date
+            context['title'] = self.title
+            context['content'] = self.content
+            context['author'] = self.author
+            context['is_active'] = self.is_active
+            return (request, context)
 
     class Meta:
         verbose_name = "Wall Message"

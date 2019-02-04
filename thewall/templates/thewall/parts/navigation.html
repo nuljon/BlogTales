@@ -23,14 +23,17 @@
                 <a class="nav-link" href="/graffiti">Graffiti</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#" id="accountDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
                     Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="accountDropdown">
-                    <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                    {% if user.username %}
+                    <a class="dropdown-item" href="{% url 'BrickmakerUpdate' pk=user.id  %}">My Account</a>
                     <a class="dropdown-item" href=" {% url 'password_change' %}">Change Password</a>
-
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                    {% endif %}
                 </div>
             </li>
             <li class="nav-item flex-grow-1">
