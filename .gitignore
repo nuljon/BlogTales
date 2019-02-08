@@ -129,6 +129,7 @@ venv.bak/
 dmypy.json
 
 ### Python Patch ###
+
 .venv/
 
 ### Python.VirtualEnv Stack ###
@@ -181,3 +182,4 @@ $RECYCLE.BIN/
 
 .vscode/settings.json
 thewall/tinyMCEsettings.py
+requirements.txt.old
