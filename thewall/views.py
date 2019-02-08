@@ -103,7 +103,7 @@ class BrickmakerDetail(DetailView):
 """
 
 
-@login_required(login_url='/login/')
+@login_required(login_url='/account/login/')
 def brick_new(request, wall_page):
 
     if request.method == "POST":

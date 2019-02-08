@@ -345,7 +345,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 SITE_ID = 1
 
 
-###################### configure DJANGO FILEBROWSER
+###################### configure DJANGO FILEBROWSER for tinymce
 
 # Main FileBrowser Directory. Leave empty in order to
 # browse all files and folders within a storage location:
@@ -356,3 +356,16 @@ FILEBROWSER_DIRECTORY = "uploads/"  # default
 # Directory to save image versions (and thumbnails). If no directory is
 # given, versions are stored at the same location as the original image:
 FILEBROWSER_VERSIONS_BASEDIR = "_versions"
+
+TINYMCE_DEFAULT_CONFIG = {
+    'selector': 'textarea',
+    'theme': 'modern',
+    'plugins': 'autolink link image imagetools emoticons preview codesample contextmenu table code lists textcolor colorpicker media',
+    'toolbar1': 'formatselect forecolor backcolor | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | table | link image media emoticons codesample | preview code',
+    'contextmenu': 'formats | link image ',
+    'menubar': 'edit insert view format table tools help',
+    'inline': False,
+    'statusbar': True,
+    'width': 'auto',
+    'height': 360,
+}
