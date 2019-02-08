@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
 {% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags wagtailroutablepage_tags %}
-
+{% block body_class %}brick-detail{% endblock %}
+{% block navigation %}
+{% include "thewall/parts/navigation.html" %}
+{% endblock navigation %}
 {% block content %}
 <section class="brick-detail">
-    <div class="container-fluid">
-        <div class="title">
+    <div class="container mt-4 py-4">
+        <div class="title pt-4">
             <h3>{{ brick.title }}</h3>
         </div>
         <div class="brick">

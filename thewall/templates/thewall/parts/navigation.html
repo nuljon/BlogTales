@@ -27,12 +27,13 @@
                     aria-expanded="false">
                     Account
                 </a>
-                <div class="dropdown-menu" aria-labelledby="accountDropdown">
+                <div class="dropdown-menu bg-dark" aria-labelledby="accountDropdown">
                     {% if user.username %}
-                    <a class="dropdown-item" href="{% url 'BrickmakerUpdate' pk=user.id  %}">My Account</a>
-                    <a class="dropdown-item" href=" {% url 'password_change' %}">Change Password</a>
+                    <a class="nav-link nav-item" href="{% url 'BrickmakerUpdate' pk=user.id  %}">My Account</a>
+                    <a class="nav-link nav-item" href=" {% url 'password_change' %}">Change Password</a>
+                    <a class="nav-link nav-item" href=" {% url 'bricklist' %}">My Active Messages</a>
                     {% else %}
-                    <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                    <a class="nav-link dropdown-item" href="{% url 'signup' %}">Sign Up</a>
                     {% endif %}
                 </div>
             </li>

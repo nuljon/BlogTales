@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+
+{% block body_class %}brick-list{% endblock %}
+{% block navigation %}
+{% include "thewall/parts/navigation.html" %}
+{% endblock navigation %}
+
+{% if page.header %}
+{% block header %}
+{% include_block page.header %}
+{% endblock header %}
+{% endif %}
+
+{% block content %}
+    <div class="container mt-4">
+    {% if brick_list %}
+        <div class="brick-list py-4">
+            <h3 class="mt-4 py-4">{{ author }}'s active messages</h3>
+        </div>
+        {% include 'thewall/parts/bricks.html' %}
+    {% else %}
+        <div class="title py-4">
+            <h3 class="mt-4 py-4">No Active Messages</h3>
+        </div>
+    {% endif %}
+    </div>
+ {% endblock %}

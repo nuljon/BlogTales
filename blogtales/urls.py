@@ -28,8 +28,8 @@ urlpatterns = [
     path('brick/new/<int:wall_page>/', wall_views.brick_new, name='brick_new'),
     path('brick/<int:pk>/', wall_views.brick_detail, name='brick_detail'),
     path('brick/edit/<int:pk>/', wall_views.brick_edit, name='brick_edit'),
-
-
+    path('brick/list', wall_views.BrickList.as_view(), name='bricklist'),
+    path('brick/delete/<int:pk>/', wall_views.brick_delete, name='brick_delete'),
 
     path('tinymce/', include('tinymce.urls')),
 
@@ -43,6 +43,7 @@ urlpatterns = [
     path('brickmaker/<int:pk>/', wall_views.BrickmakerDetail.as_view(), name="BrickmakerDetail"),
 
     path('brickmaker/', wall_views.BrickmakerDetail.as_view(), name='Brickmaker'),
+
 
 
     # For anything not caught by a more specific rule above, hand over to

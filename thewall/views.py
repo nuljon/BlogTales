@@ -21,7 +21,7 @@ from django.views.generic.edit import (CreateView, DeleteView, FormView,
 from django.views.generic.list import ListView
 from thewall.forms import BrickForm, BrickmakerForm
 from thewall.models import Brick, Brickmaker, WallPage
-
+from django.contrib.auth.models import User
 
 class BrickmakerUpdate(LoginRequiredMixin, UpdateView):
     model = Brickmaker
@@ -86,7 +86,7 @@ class BrickmakerDetail(DetailView):
         else:
             model = get_object_or_404(Brickmaker, user=request.user)
         if model.bio == '':
-            return redirect('BrickmakerUpdate',pk = model.pk)
+            return redirect('BrickmakerUpdate', pk=model.id)
 
         return render(request, self.template_name, {'model': model})
 
@@ -96,6 +96,40 @@ class BrickmakerDetail(DetailView):
     #    return render(request, self.template_name, {'context': context})
 
 
+class BrickList(LoginRequiredMixin, ListView):
+    brick = Brick
+    context_object_name = 'brick_list'
+
+    def get_queryset(self):
+        self.user = get_object_or_404(
+            User, username=self.request.user)
+        return Brick.objects.filter(author=self.user, is_active=True)
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        #add author
+        context['author'] = self.request.user
+        return context
+
+    template_name = 'thewall/brick_list.html'
+
+
+class BrickDetail(LoginRequiredMixin, DetailView):
+    model = Brick
+    template_name = 'thewall/brick_detail.html'
+
+    def get(self, request, **kwargs):
+        if 'pk' in kwargs:
+            self=get_object(Brick, **kwargs)
+            return self
+        pass
+
+    def get_object(self, Brick, **kwargs):
+        if 'pk' in kwargs:
+            id = kwargs['pk']
+            self = Brick.id
+            return self
 
 """
     the crispy forms tutorial
@@ -126,6 +160,15 @@ def brick_detail(request, pk):
     return render(request, 'thewall/brick_detail.html', {'brick': brick})
 
 
+@login_required(login_url='/account/login/')
+def brick_delete(request, pk):
+     brick = get_object_or_404(Brick, pk=pk)
+     brick.is_active = False;
+     brick.save()
+     return redirect('bricklist')
+
+
+@login_required(login_url='/account/login/')
 def brick_edit(request, pk):
      brick = get_object_or_404(Brick, pk=pk)
      if request.method == "POST":

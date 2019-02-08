@@ -1,0 +1,10 @@
+<section class="user-profile-messages-section">
+    <div class="message-list">
+        <ul>
+            {% for brick in brick_list %}
+<li class="bricks_item"><a href="{% url 'brick_delete' pk=brick.id %}" class="badge badge-primary">delete</a> <a href="{% url 'brick_edit' pk=brick.id %}"
+        class="badge badge-primary">edit</a> {{brick.date}} {{brick.title}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
