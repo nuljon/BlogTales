@@ -14,6 +14,10 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 from decouple import config, Csv
 
+# import re
+import re
+
+
 from django.conf.global_settings import INTERNAL_IPS
 from unipath import Path
 #import dj_database_url
@@ -33,7 +37,7 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = True
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': config('ENGINE'),
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
@@ -247,15 +251,22 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-INTERNAL_IPS = ('127.0.0.1')
+INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv())
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = "blogtales"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://localhost:8000'
+BASE_URL = 'https://nuljonapp.pythonanywhere.com'
 
+IGNORABLE_404_URLS = [
+        re.compile(r'^/apple-touch-icon.*\.png$'),
+        re.compile(r'^/favicon.ico$'),
+        re.compile(r'^/robots.txt$'),
+#        re.compile(r'^/phpmyadmin/'),
+#        re.compile(r'\.(cgi|php|pl)$'),
+    ]
 
 # wagtail image processing - features rely on open cv2 nd numpy
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = True
@@ -333,12 +344,13 @@ FLUENT_COMMENTS_COMPACT_GRID_SIZE = 12
 FLUENT_COMMENTS_COMPACT_COLUMN_CSS_CLASS = 'col-sm-10'
 
 # display fields to render visible in order deisired
-FLUENT_COMMENTS_FIELD_ORDER = ('comment', 'name', 'email', 'url')
+# FLUENT_COMMENTS_FIELD_ORDER = ('comment', 'name', 'email', 'url')
+FLUENT_COMMENTS_FIELD_ORDER = ('comment', 'name')
 
 # alternatively, hide fields from rendeering
 # FLUENT_COMMENTS_EXCLUDE_FIELDS = ('email', 'url')
 
-# crispy forms template pack used by comments
+# crispy forms template pack used by comments and thewall
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 ####################### configure DJANGO SITES-FRAMEWORK - required by comments
@@ -363,9 +375,9 @@ TINYMCE_DEFAULT_CONFIG = {
     'plugins': 'autolink link image imagetools emoticons preview codesample contextmenu table code lists textcolor colorpicker media',
     'toolbar1': 'formatselect forecolor backcolor | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | table | link image media emoticons codesample | preview code',
     'contextmenu': 'formats | link image ',
-    'menubar': 'edit insert view format table tools help',
+    'menubar': 'file edit insert view format table tools help',
     'inline': False,
     'statusbar': True,
-    'width': 'auto',
+    'width': '90%',
     'height': 360,
 }
