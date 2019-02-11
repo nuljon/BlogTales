@@ -1,7 +1,7 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% image value.background_image width-1600 as tmp_image %}
-<div class="jumbotron jumbotron-fluid" style="background:transparent url(&quot;{{tmp_image.url}}&quot;) center / cover no-repeat;">
+<div class="jumbotron jumbotron-fluid" style="background:transparent url(&quot;{{tmp_image.url}}&quot;) top / cover no-repeat;">
     <div class="container-fluid mx-0">
         {% include_block value.bound_blocks.page_heading %}
         <p class="lead text-center" style="opacity: .8; font-weight:700;">{% include_block self.description %}</p>
