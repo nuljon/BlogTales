@@ -51,7 +51,7 @@ body {
     max-width: 100%;
     height: auto;
 }
-
+.img-thumbnail { max-width:20vw;}
 div>input.btn.btn-primary {
     background-color: rgb(52, 58, 64);
     border-color: rgb(52, 58, 64);
