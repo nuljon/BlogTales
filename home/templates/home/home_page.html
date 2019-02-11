@@ -16,8 +16,8 @@
     {% with blocks=self.body %}
     {% for block in blocks %}
     {% if block.block_type == 'image' %}
-    {% image block.value width-900 class="img-fluid" %}
-    {% else %}
+{% image block.value width-900 as tmp_image %}
+<img class="img-fluid" src="{{tmp_image.url}}" alt="{{tmp_image.alt}}" />
     <section class="{{block.block_type}}-section mb-3">
         {% include_block block %}
     </section>
