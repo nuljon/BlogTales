@@ -6,7 +6,23 @@
 {% block navigation %}
 {% include "thewall/parts/navigation.html" %}
 {% endblock %}
-{% block content %}
-<h1>{{ self.title }}</h1>
-{{ page.body|richtext }}
-{% endblock %}
+<div class="container">
+    {% if self.header %}
+    {% block header %}
+    {% include_block self.header %}
+    {% endblock header %}
+    {% endif %}
+    {% block content %}
+    {% with blocks=self.body %}
+    {% for block in blocks %}
+    {% if block.block_type == 'image' %}
+    {% image block.value width-900 class="img-fluid" %}
+    {% else %}
+    <section class="{{block.block_type}}-section mb-3">
+        {% include_block block %}
+    </section>
+    {% endif %}
+    {% endfor %}
+    {% endwith %}
+    {% endblock %}
+</div>
