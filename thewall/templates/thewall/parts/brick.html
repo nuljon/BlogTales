@@ -2,9 +2,19 @@
 
 
 <section class="bricks">
-{% for brick in page.bricks.all %}
-<div class="brick">
-{{ brick.content|safe }}
-</div>
-{% endfor %}
+    <div class="card-column">
+        {% for brick in page.bricks.all %}
+        <div class="card">
+            <div class="brick d-flex flex-column justify- content-around mb-2">
+                <div class="author p-1 mb-2 d-flex justify-content-center">
+                    <img class="img-fluid img-thumbnail" src="{{ brick.avatar_image }}" alt="avatar image" /><br />
+                    <span class="small">{{ brick.author }}</span>
+                </div>
+                <div class="brick-content mb-2">
+                    {{ brick.content|safe }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </section>

@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
 @import url('https://fonts.googleapis.com/css?family=Anton|Fira+Sans+Extra+Condensed');
+
 html,
 body {
     height: 100%;
@@ -12,19 +13,19 @@ body {
 .blog-page,
 .post-page,
 .brickmaker-profile {
-    padding-top:3.5rem;
-    padding-bottom:0;
+    padding-top: 3.5rem;
+    padding-bottom: 0;
 }
 
 .jumbotron,
 .jumbotron-fluid {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: rgb(255,255,255);
+    color: rgb(255, 255, 255);
     text-shadow: rgb(31, 8, 18) 5px 2px 3px;
 }
 
 .jumbotron .purple,
-.jumbotron-fluid .purple{
+.jumbotron-fluid .purple {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(255, 0, 255);
     text-shadow: rgb(85, 18, 49) 5px 2px 3px;
@@ -39,7 +40,8 @@ body {
     color: #9a9b9c;
     text-shadow: rgb(80, 18, 49) 5px 2px 3px;
 }
-.jumbotron-text-muted .yellow{
+
+.jumbotron-text-muted .yellow {
     font-family: 'Fira Sans Extra Condensed', sans-serif;
     color: #ccca6c;
     text-shadow: rgb(80, 18, 49) 5px 2px 3px;
@@ -49,10 +51,12 @@ body {
     max-width: 100%;
     height: auto;
 }
-div > input.btn.btn-primary {
-background-color: rgb(52, 58, 64);
-border-color: rgb(52, 58, 64);
+
+div>input.btn.btn-primary {
+    background-color: rgb(52, 58, 64);
+    border-color: rgb(52, 58, 64);
 }
+
 blockquote {
     text-align: center;
     background-color: #9a9b9c;
@@ -79,6 +83,7 @@ blockquote {
 .logo {
     max-width: 1.2em;
 }
+
 /*Profile card 4*/
 
 
@@ -167,27 +172,278 @@ html {
     font-size: 1rem;
 }
 
-@media screen and (min-width: 480) {
+
+@media screen and (max-width: 480px) {
+
+    html,
+    body {
+        font-size: .9rem;
+    }
+
+    h1-6 {
+        font-weight: 700;
+    }
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+    }
+
+    h5 {
+        font-size: 1rem;
+    }
+
+    h6 {
+        font-size: .9rem;
+    }
+
+    .card-columns {
+        column-count: 1
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 575.98px ) {
+
     html,
     body {
         font-size: 1rem;
     }
+
+    h1-6 {
+        font-weight: 700;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    h4 {
+        font-size: 1.3rem;
+    }
+
+    h5 {
+        font-size: 1.2rem;
+    }
+
+    h6 {
+        font-size: 1.1rem;
+    }
+
+    .card-columns {
+        column-count: 1
+    }
+}
+@media screen and (min-width: 576px) and (max-width: 767.98px) {
+
+    html,
+    body {
+        font-size: 1rem;
+    }
+
+    h1-6 {
+        font-weight: 700;
+    }
+
     h1 {
         font-size: 2rem;
     }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    h4 {
+        font-size: 1.4rem;
+    }
+
+    h5 {
+        font-size: 1.3rem;
+    }
+
+    h6 {
+        font-size: 1.2rem;
+    }
+
+    .card-columns {
+        column-count: 2
+    }
 }
 
-@media screen and (min-width: 800) {
+@media screen and (min-width: 768px) and (max-width: 991.98px) {
+
     html,
     body {
         font-size: 1.1rem;
     }
-}
 
-@media screen and (min-width: 1200px) {
+    h1-6 {
+        font-weight: 700;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    h4 {
+        font-size: 1.6rem;
+    }
+
+    h5 {
+        font-size: 1.5rem;
+    }
+
+    h6 {
+        font-size: 1.3rem;
+    }
+
+    .card-columns {
+        column-count: 2
+    }
+}
+@media screen and (min-width: 992px) and (max-width: 1199.98px) {
+
     html,
     body {
         font-size: 1.2rem;
+    }
+
+    h1-6 {
+        font-weight: 700;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 2rem;
+    }
+
+    h4 {
+        font-size: 1.8rem;
+    }
+
+    h5 {
+        font-size: 1.6rem;
+    }
+
+    h6 {
+        font-size: 1.4rem;
+    }
+
+    .card-columns {
+        column-count: 3
+    }
+}
+@media screen and (min-width: 1200px) and (max-width: 1599.98px) {
+
+    html,
+    body {
+        font-size: 1.3rem;
+    }
+
+    h1-6 {
+        font-weight: 700;
+    }
+
+    h1 {
+        font-size: 2.6rem;
+    }
+
+    h2 {
+        font-size: 2.4rem;
+    }
+
+    h3 {
+        font-size: 2.2rem;
+    }
+
+    h4 {
+        font-size: 1.9rem;
+    }
+
+    h5 {
+        font-size: 1.8rem;
+    }
+
+    h6 {
+        font-size: 1.6rem;
+    }
+
+    .card-columns {
+        column-count: 4
+    }
+}
+@media screen and (min-width: 1200px) and (max-width: 1599.98px) {
+
+    html,
+    body {
+        font-size: 1.5rem;
+    }
+
+    h1-6 {
+        font-weight: 700;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.8rem;
+    }
+
+    h3 {
+        font-size: 2.6rem;
+    }
+
+    h4 {
+        font-size: 2.2rem;
+    }
+
+    h5 {
+        font-size: 2rem;
+    }
+
+    h6 {
+        font-size: 1.8rem;
+    }
+
+    .card-columns {
+        column-count: 5
     }
 }
 /* .card .profile-card-4 {

@@ -236,11 +236,16 @@ class Brick(models.Model):
     def get_wall_page(self):
         return self.wall_page
 
+    def get_brickmaker(self):
+        id = self.author
+        return Brickmaker.id
+
     """
-    I am not sure if we will need a bricks get_context method here, but we probably will need it in the BrickmakerPage model for frontend admin of bricks
-"""
-    def get_context_data(self, request, **kwargs):
-            context = super(Brick, self).get_context_data(**kwargs)
+        I am not sure if we will need a bricks get_context method here, but we probably will need it in the BrickmakerPage model for frontend admin of bricks
+    """
+    def get_context_data(self, request, context=None, **kwargs):
+            context = context + super(Brick, self).get_context_data(**kwargs)
+            context['avatar_image'] = self.get_brickmaker().avatar_image
             context['wall_page'] = self.wall_page
             context['name'] = self.name
             context['date'] = self.date

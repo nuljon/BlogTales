@@ -1,9 +1,15 @@
 {% load static %}
 
-<div class="container-fluid">
-<h1 class="py-4"><img src="/media/{{ model.avatar_image }}" class="img-fluid"
-        alt="avatar image" style="width:25%;height:auto"> {{ model.user }}'s Profile</h1>
-    <div class="brickmaker-bio">
-        {{ model.bio|safe }}
+<div class="container-fluid mt-4 pt-4">
+    <div class="media pt-4">
+        <a class="d-flex" href="#">
+            <img src="/media/{{ model.avatar_image }}" class="img-fluid" alt="avatar image">
+        </a>
+        <div class="media-body  p-2">
+            <h1 class="py-2"> {{ model.user }}'s Profile</h1>
+            <div class="brickmaker-bio">
+                {{ model.bio|safe }}
+            </div>
+        </div>
     </div>
 </div>
