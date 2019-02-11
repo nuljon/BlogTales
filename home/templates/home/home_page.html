@@ -2,11 +2,11 @@
 
 {% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags blogapp_tags %}
 
-{% block body_class %}template-homepage{% endblock %}
+{% block body_class %}template-homepage mt-4 pt-4{% endblock %}
 {% block navigation %}
 {% include "thewall/parts/navigation.html" %}
 {% endblock %}
-<div class="container">
+<div class="container mt-4 pt-4">
     {% if self.header %}
     {% block header %}
     {% include_block self.header %}
