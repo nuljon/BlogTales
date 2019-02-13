@@ -211,7 +211,7 @@ html {
         font-size: .9rem;
     }
 
-    .card-columns {
+    .card-column {
         column-count: 1
     }
     .display-4 {
@@ -253,7 +253,7 @@ html {
         font-size: 1.1rem;
     }
 
-    .card-columns {
+    .card-column {
         column-count: 1
     }
     .display-4 {
@@ -295,7 +295,7 @@ html {
         font-size: 1.2rem;
     }
 
-    .card-columns {
+    .card-column {
         column-count: 2
     }
     .display-4 {
@@ -338,7 +338,7 @@ html {
         font-size: 1.3rem;
     }
 
-    .card-columns {
+    .card-column {
         column-count: 2
     }
 }
@@ -377,7 +377,7 @@ html {
         font-size: 1.4rem;
     }
 
-    .card-columns {
+    .card-column {
         column-count: 3
     }
 }
@@ -416,7 +416,7 @@ html {
         font-size: 1.6rem;
     }
 
-    .card-columns {
+    .card-column {
         column-count: 4
     }
 }
@@ -455,7 +455,7 @@ html {
         font-size: 1.8rem;
     }
 
-    .card-columns {
+    .card-column {
         column-count: 5
     }
 }
