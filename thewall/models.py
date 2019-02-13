@@ -206,13 +206,14 @@ class Brick(models.Model):
     wall_page = ForeignKey(
         WallPage,
         verbose_name=('message wall'),
-        null=True,
-        blank=True,
         editable=True,
         on_delete=models.SET_NULL,
+        default=1,
+        blank=True,
+        null=True,
         related_name='bricks'
     )
-    name = models.CharField('Name', max_length=255, blank=True)
+    name = models.CharField('Name', max_length=255, blank=True, null=True)
     date = models.DateTimeField(
         verbose_name="Date", default=datetime.datetime.today)
     title = models.CharField('Title', max_length=255, default='My Title')
@@ -236,16 +237,11 @@ class Brick(models.Model):
     def get_wall_page(self):
         return self.wall_page
 
-    def get_brickmaker(self):
-        id = self.author
-        return Brickmaker.id
-
     """
         I am not sure if we will need a bricks get_context method here, but we probably will need it in the BrickmakerPage model for frontend admin of bricks
     """
     def get_context_data(self, request, context=None, **kwargs):
             context = context + super(Brick, self).get_context_data(**kwargs)
-            context['avatar_image'] = self.get_brickmaker().avatar_image
             context['wall_page'] = self.wall_page
             context['name'] = self.name
             context['date'] = self.date

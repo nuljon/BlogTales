@@ -5,52 +5,50 @@
 {% block navigation %}
 {% include "thewall/parts/navigation.html" %}
 {% endblock navigation %}
-<div class=container-fluid>
-    {% if page.header %}
-    {% block header %}
-    {% include_block page.header %}
-    {% endblock header %}
+{% if page.header %}
+{% block header %}
+{% include_block page.header %}
+{% endblock header %}
+{% endif %}
+
+{% block content %}
+<main class="my-4 pt-4">
+<div class="thewall-create-brick text-center mb-4">
+    <a href="{% url 'brick_new' page.id %}"><button type="button" class="btn btn-secondary">New Message</button></a>
+</div>
+    {% if page.search_term %}
+    <section class="search-results-section">
+        <div class="search_result_header">
+            <h2>Bricks returned for {{ page.search_term }}:</h2>
+        </div>
+        {% if brick %}
+        <ul>
+            {% for brick in bricks %}
+            <li>
+                {% include "thewall/parts/brick.html" %}
+            </li>
+        </ul>
+        {% endfor %}
+        {% else %}
+        <h3 class="px-2">sorry no bricks were found searching for: {{ self.search_term }}</h3>
+        {% endif %}
+
+    </section>
+    {% else %}
+
+    {% with blocks=page.body %}
+    {% for block in blocks %}
+    {% if block.block_type == 'image' %}
+    {% image block.value width-900 class="img-fluid" %}
+    {% else %}
+    <section class="{{block.block_type}}-section mb-3">
+        {% include_block block %}
+    </section>
+    {% endif %}
+    {% endfor %}
+    {% endwith %}
+    {% include "thewall/parts/brick.html" %}
     {% endif %}
 
-    {% block content %}
-    <main>
-        {% if page.search_term %}
-        <section class="search-results-section">
-            <div class="search_result_header">
-                <h2>Bricks returned for {{ page.search_term }}:</h2>
-            </div>
-            {% if brick %}
-            <ul>
-                {% for brick in bricks %}
-                <li>
-                    {% include "thewall/parts/brick.html" %}
-                </li>
-            </ul>
-            {% endfor %}
-            {% else %}
-            <h3 class="px-2">sorry no bricks were found searching for: {{ self.search_term }}</h3>
-            {% endif %}
-
-        </section>
-        {% else %}
-
-        {% with blocks=page.body %}
-        {% for block in blocks %}
-        {% if block.block_type == 'image' %}
-        {% image block.value width-900 class="img-fluid" %}
-        {% else %}
-        <section class="{{block.block_type}}-section mb-3">
-            {% include_block block %}
-        </section>
-        {% endif %}
-        {% endfor %}
-        {% endwith %}
-        <div class="thewall-create-brick text-center">
-            <a href="{% url 'brick_new' page.id %}"><button type="button" class="btn btn-secondary">New Message</button></a>
-        </div>
-        {% include "thewall/parts/brick.html" %}
-        {% endif %}
-
-    </main>
-    {% endblock content %}
-</div>
+</main>
+{% endblock content %}

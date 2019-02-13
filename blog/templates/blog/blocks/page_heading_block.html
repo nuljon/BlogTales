@@ -1,7 +1,7 @@
 {% load static wagtailcore_tags %}
-<div class="title-block" style="color:{% include_block self.color %};
+<div class="title-block mt-1 pt-4" style="color:{% include_block self.color %};
                                 text-shadow:{% include_block self.shadow_offsets %} rgba(0,0,0,{% include_block self.shadow_opacity %})">
-    <h1 class="display-4 text-center">
+    <h1 class="display-4 text-center pt-4">
         {% include_block self.text %}
     </h1>
     {% if post %}

@@ -5,13 +5,18 @@
     <div class="card-column">
         {% for brick in page.bricks.all %}
         <div class="card">
-            <div class="brick d-flex flex-column justify- content-around mb-2">
+            <div class="brick d-flex flex-column justify-content-around mb-2">
                 <div class="author p-1 mb-2 d-flex justify-content-center">
-                    <img class="img-fluid img-thumbnail" src="{{ brick.avatar_image }}" alt="avatar image" /><br />
-                    <span class="small">{{ brick.author }}</span>
+                    <a href="{% url 'BrickmakerDetail' pk=brick.author.id %}"><img class="img-fluid wall-avatars" src="/media/{{ brick.author.brickmaker.avatar_image }}"
+                            alt="avatar image" /><br />
+                        <span class="small align-self-center mx-2">{{ brick.author }}</span></a>
                 </div>
                 <div class="brick-content mb-2">
                     {{ brick.content|safe }}
+                </div>
+                <div class="btn-group" role="group" aria-label="Message Buttons">
+                    <a href="{% url 'brick_new' page.id %}"><button type="button" class="btn btn-secondary">New Message</button></a><a
+                        href="#"><button type="button" class="btn btn-secondary" disabled>Make Comment</button></a><a href="#top"><button type="button" class="btn btn-secondary">Top</button></a>
                 </div>
             </div>
         </div>
