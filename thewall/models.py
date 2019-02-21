@@ -6,6 +6,8 @@ from datetime import date
 
 import wagtail
 from astroid import objects
+from ckeditor.fields import CKEditorWidget, RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField, RichTextUploadingFormField
 from django import forms
 from django.conf import settings
 from django.conf.global_settings import AUTH_USER_MODEL
@@ -120,7 +122,7 @@ class WallPage(RoutablePageMixin, Page):
         return Page.serve(self, request, *args, **kwargs)
 
     """
-    My blog app uses a catchall type router here for post_by_date_slug, but we are probably not going to use it here. It serves the first of posts on a date slug ... rather, we need a private access BrickMakerPage as a frontend admin screen so users can work on the db doing CRUD for thier own bricks. Only users that were logged in when posting will be able to edit their prior posted messages, i.e. "bricks". The routing for that can be handled on that BrickMakerPage model, if inheriting RoutablePageMixin, or routing by traditional url and view config files. The slug for a particular brick will likely only be useful for frontend admin and should be built from the brick pk (example: wall/brick/<int:pk>/). Backend admin will be handled by Wagtail Admin via Snippets Menu.
+    My blog app uses a catchall type router for post_by_date_slug, but we are probably not going to use it here. It serves the first of posts on a date slug ... rather, we need a private access BrickMakerPage as a frontend admin screen so users can work on the db doing CRUD for thier own bricks. Only users that were logged in when posting will be able to edit their prior posted messages, i.e. "bricks". The routing for that can be handled on that BrickMakerPage model, if inheriting RoutablePageMixin, or routing by traditional url and view config files. The slug for a particular brick will likely only be useful for frontend admin and should be built from the brick pk (example: wall/brick/<int:pk>/). Backend admin will be handled by Wagtail Admin via Snippets Menu.
     """
     #@route(r'^(\d{4})/(\d{2})/(\d{2})/(.+)/$')
     #def post_by_date_slug(self, request, year, month, day, slug, *args, **kwargs):
@@ -172,7 +174,7 @@ def user_directory_path(instance, filename):
 class Brickmaker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar_image = models.ImageField(upload_to=user_directory_path, blank=True)
-    bio = HTMLField(blank=True)
+    bio = RichTextUploadingField(blank=True)
 
     def __str__(self):
         return self.user.username
@@ -217,7 +219,7 @@ class Brick(models.Model):
     date = models.DateTimeField(
         verbose_name="Date", default=datetime.datetime.today)
     title = models.CharField('Title', max_length=255, default='My Title')
-    content = HTMLField('Content', blank=True)
+    content = RichTextUploadingField(blank=True)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         verbose_name=('message author'),

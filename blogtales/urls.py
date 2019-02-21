@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import (include, path,  # For django versions from 2.0 and up
                          reverse_lazy)
+from django.contrib.admin.views.decorators import staff_member_required
 from filebrowser.sites import site
 from taggit_templatetags2 import urls as taggit_templatetags2_urls
 from wagtail.admin import urls as wagtailadmin_urls
@@ -12,6 +13,8 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 from thewall import views as wall_views
 from thewall.models import Brickmaker
+from ckeditor_uploader import views as ckeditor_views
+from django.views.decorators.cache import never_cache
 
 urlpatterns = [
     path('admin/filebrowser/', site.urls),
@@ -43,6 +46,9 @@ urlpatterns = [
     path('brickmaker/<int:pk>/', wall_views.BrickmakerDetail.as_view(), name="BrickmakerDetail"),
 
     path('brickmaker/', wall_views.BrickmakerDetail.as_view(), name='Brickmaker'),
+    url(r'^upload/', ckeditor_views.upload, name='ckeditor_upload'),
+    url(r'^browse/', never_cache(ckeditor_views.browse),
+        name='ckeditor_browse'),
 
 
 
