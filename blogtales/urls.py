@@ -40,12 +40,10 @@ urlpatterns = [
     path('oauth/', include('social_django.urls', namespace='social')),
     path('account/', include('accounts.urls')),
     path('brickmaker/<int:pk>/update/account/', include('accounts.urls')),
-    path('brickmaker/<int:pk>/edit/', wall_views.BrickmakerEdit.as_view(),
-        name='BrickmakerEdit'),
     path('brickmaker/<int:pk>/update/', wall_views.BrickmakerUpdate.as_view(), name='BrickmakerUpdate'),
     path('brickmaker/<int:pk>/', wall_views.BrickmakerDetail.as_view(), name="BrickmakerDetail"),
-
     path('brickmaker/', wall_views.BrickmakerDetail.as_view(), name='Brickmaker'),
+    path('/graffiti/', include(wagtail_urls)),
     url(r'^upload/', ckeditor_views.upload, name='ckeditor_upload'),
     url(r'^browse/', never_cache(ckeditor_views.browse),
         name='ckeditor_browse'),

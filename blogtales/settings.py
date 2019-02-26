@@ -414,7 +414,7 @@ CKEDITOR_CONFIGS = {
         # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
         'height': 'auto',
         'width': '100%',
-        'filebrowserWindowHeight': 'auto',
+        'filebrowserWindowHeight': '80%',
         'filebrowserWindowWidth': '80%',
         'toolbarCanCollapse': True,
         # 'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',

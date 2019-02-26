@@ -43,36 +43,6 @@ class BrickmakerUpdate(LoginRequiredMixin, UpdateView):
 
     #    return render(request, self.template_name, {'form': form})
 
-
-class BrickmakerEdit(LoginRequiredMixin, UpdateView):
-    model = Brickmaker
-    form_class = BrickmakerForm
-    template_name_suffix = '_form'
-    success_url = reverse_lazy('BrickmakerDetail', pk=model.id)
-
-    """ def get(self, request, *args, **kwargs):
-        if 'pk' in kwargs:
-            pk = kwargs['pk']
-            model = get_object_or_404(Brickmaker, pk=pk)
-
-        else:
-            model = get_object_or_404(Brickmaker, user=request.user)
-
-
-        data = model_to_dict(model,('user','avatar_image','bio'))
-        form = self.form_class(data)
-
-        return render(request, 'thewall/brickmaker_edit_form.html', {'form': form, 'data': data})
-
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        if form.is_valid():
-            brickmaker=form.save()
-            return HttpResponseRedirect('BrickmakerDetail', pk=brickmaker.id)
-        return render(request, self.template_name, {'form': form})
- """
-
-
 class BrickmakerDetail(DetailView):
     model = Brickmaker
     template_name = 'thewall/brickmaker_detail.html'

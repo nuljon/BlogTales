@@ -1,0 +1,6 @@
+<div class="buttons text-center" aria-label="Profile Navigation">
+    <a href="/graffiti/" class="badge badge-dark">view Wall</a>
+{% if request.user.id is model.user.id %}
+    <a href="{% url 'BrickmakerUpdate' pk=model.id %}" class="badge badge-dark">Edit</a>
+    {% endif %}
+</div>

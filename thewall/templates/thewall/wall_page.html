@@ -13,8 +13,8 @@
 
 {% block content %}
 <main class="my-4 pt-4">
-<div class="thewall-create-brick text-center mb-4">
-    <a href="{% url 'brick_new' page.id %}"><button type="button" class="btn btn-secondary">New Message</button></a>
+<div class="small text-center mb-4">
+    <a class="badge badge-dark" href="{% url 'brick_new' page.id %}">New Message</a>
 </div>
     {% if page.search_term %}
     <section class="search-results-section">

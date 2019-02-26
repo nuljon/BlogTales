@@ -1,0 +1,5 @@
+<div class="small text-center" aria-label="Message Navigation">
+{% if request.user.id is brick.author.brickmaker.id %}<a class="badge badge-dark" href="{% url 'brick_edit' brick.id %}">Edit</a>{% endif %}<a class="badge badge-dark" href="{% url 'brick_new' page.id %}">New</a><a
+    class="badge badge-secondary"
+        href="#">Comment</a><a class="badge badge-dark" href="#top">Top</a>
+</div>

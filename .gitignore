@@ -183,3 +183,4 @@ $RECYCLE.BIN/
 .vscode/settings.json
 thewall/tinyMCEsettings.py
 requirements.txt.old
+blogtales/static/js/uploadcare-widget-config.html

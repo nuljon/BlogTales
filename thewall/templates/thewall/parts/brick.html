@@ -4,21 +4,23 @@
 <section class="bricks">
     <div class="card-column">
         {% for brick in page.bricks.all %}
-        <div class="card">
+        <div class="card mb-4">
             <div class="brick d-flex flex-column justify-content-around mb-2">
-                <div class="author p-1 mb-2 d-flex justify-content-center">
-                    <a href="{% url 'BrickmakerDetail' pk=brick.author.id %}"><img class="img-fluid wall-avatars" src="/media/{{ brick.author.brickmaker.avatar_image }}"
-                            alt="avatar image" /><br />
-                        <span class="small align-self-center mx-2">{{ brick.author }}</span></a>
-                </div>
                 <div class="brick-content mb-2">
                     {{ brick.content|safe }}
                 </div>
-                <div class="buttons text-center" aria-label="Message Buttons">
-                    <a href="{% url 'brick_new' page.id %}"><button type="button" class="btn btn-secondary">New Message</button></a><a
-                        href="#"><button type="button" class="btn btn-secondary" disabled>Make Comment</button></a><a href="#top"><button type="button" class="btn btn-secondary">Top</button></a>
+            </div>
+            <div class="author p-1 mb-2">
+                <div class="smaller">Author:
+                </div>
+                <div>
+                    <a href="{% url 'BrickmakerDetail' pk=brick.author.id %}"><img class="img-fluid wall-avatars" src="/media/{{ brick.author.brickmaker.avatar_image }}"
+                            alt="avatar image" /><span class="small align-self-center mx-2">{{ brick.author }}</span></a>
+                    </p>
+                    {% include 'thewall/parts/brick_inline_nav.html' %}
                 </div>
             </div>
+
         </div>
         {% endfor %}
     </div>

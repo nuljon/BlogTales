@@ -9,6 +9,13 @@ body {
     position: relative;
     background-color: #fff;
 }
+.small {
+    font-size: .8rem
+}
+
+.smaller {
+    font-size: .5rem
+}
 
 .blog-page,
 .post-page,
@@ -51,11 +58,12 @@ body {
     max-width: 100%;
     height: auto;
 }
-.img-thumbnail { max-width:20vw; max-width:auto;}
+.img-thumbnail { max-width:20vw;}
 .wall-avatars {
     width:50px;
     height:auto;
 }
+
 div>input.btn.btn-primary {
     background-color: rgb(52, 58, 64);
     border-color: rgb(52, 58, 64);
@@ -210,10 +218,16 @@ html {
     h6 {
         font-size: .9rem;
     }
-
+.smaller {
+    font-size: .7rem
+}
+.badge {
+    font-size: 100%
+}
     .card-column {
         column-count: 1
     }
+
     .display-4 {
         font-size: 1.7rem;
     }

@@ -2,6 +2,9 @@
 {% load crispy_forms_tags static %}
 {% block extra_head %}
 {{ form.media }}
+<!-- load the ckeditor upload file manager plugin from cdn -->
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.min.js" charset="utf-8"></script>
+<script src="{% static 'js/ckeditor-responsive-images.js' %}"></script>
 {% endblock extra_head %}
 {% block navigation%}
 {% include 'thewall/parts/navigation.html' %}
@@ -9,16 +12,12 @@
 {% block content %}
 <div class="mt-4 pt-4 mb-4">
     <div class="mx-1 my-4">
-        <h2><img src="/media/{{ brickmaker.avatar_image }}" class="img-fluid px-2" alt="avatar image" style="width:25%;height:auto;" />
-            {{brickmaker.user }}'s Profile Editor</h2>
+        <div class="d-inline-block px-2"><img src="/media/{{ brickmaker.avatar_image }}" class="img-fluid px-2" alt="avatar image" width="25%" />
+        </div>
+        <div class="d-inline-block align-middle">
+            <h2>{{brickmaker.user }}'s Profile Editor</h2>
+        </div>
     </div>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.user | as_crispy_field }}
-        {{ form.avatar_image | as_crispy_field }}
-        {{ form.bio | as_crispy_field }}
-        <button type="submit" class="btn btn-outline-success">Save</button>
-    </form>
     <div class="px-2 mx-1 mb-4">
         <p class="small">It's your page. There are no rules. Here you can: </p>
         <ul>
@@ -28,6 +27,12 @@
                 clip, or combinations of media, whatever you like.</li>
         </ul>
     </div>
-
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.user | as_crispy_field }}
+    {{ form.avatar_image | as_crispy_field }}
+    {{ form.bio | as_crispy_field }}
+    <button type="submit" class="btn btn-outline-success">Save</button>
+</form>
 </div>
 {% endblock %}
