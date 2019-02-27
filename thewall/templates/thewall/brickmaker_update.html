@@ -31,7 +31,7 @@
     {% csrf_token %}
     {{ form.user | as_crispy_field }}
     {{ form.avatar_image | as_crispy_field }}
-    {{ form.bio | as_crispy_field }}
+    {{ form.content | as_crispy_field }}
     <button type="submit" class="btn btn-outline-success">Save</button>
 </form>
 </div>
