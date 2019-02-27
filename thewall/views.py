@@ -55,7 +55,7 @@ class BrickmakerDetail(DetailView):
 
         else:
             model = get_object_or_404(Brickmaker, user=request.user)
-        if model.bio == '':
+        if model.content == '':
             return redirect('BrickmakerUpdate', pk=model.id)
 
         return render(request, self.template_name, {'model': model})

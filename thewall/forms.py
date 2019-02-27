@@ -15,7 +15,7 @@ class BrickmakerForm(ModelForm):
         self.fields['user'].widget = HiddenInput()
     class Meta:
         model = Brickmaker
-        fields = ('user', 'avatar_image', 'bio')
-        labels = {'user': 'Message Author','avatar_image': 'Avatar', 'bio': 'Biography'}
-        help_texts = {'bio': 'a creative space for you to leave an impression of who you are and perhaps how Johnathon signified in your life.'}
+        fields = ('user', 'avatar_image', 'content')
+        labels = {'user': 'Message Author','avatar_image': 'Avatar', 'content': 'Biography'}
+        help_texts = {'content': 'a creative space for you to leave an impression of who you are and perhaps how Johnathon signified in your life.'}
 

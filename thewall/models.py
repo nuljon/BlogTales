@@ -174,7 +174,7 @@ def user_directory_path(instance, filename):
 class Brickmaker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar_image = models.ImageField(upload_to=user_directory_path, blank=True)
-    bio = RichTextUploadingField(blank=True)
+    content = RichTextUploadingField(blank=True)
 
     def __str__(self):
         return self.user.username
