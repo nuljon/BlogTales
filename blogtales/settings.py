@@ -391,6 +391,11 @@ CKEDITOR_CONFIGS = {
           		{'name': 'styles', 'items': ['Styles', 'Format']}
         ],
         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
+        'width': '100%',
+        'height': 'auto',
+        'uploadcare': {
+            'publicKey': '30b5439d8dd842ee01b4'
+        },
         'embed_provider': '//noembed.com/embed?url={url}&callback={callback}',
         'allowedContent': True,
        # 'toolbargroups': [{'name': 'clipboard', 'groups': ['undo', 'clipboard']},
