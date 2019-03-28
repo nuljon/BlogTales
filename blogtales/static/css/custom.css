@@ -9,6 +9,27 @@ body {
     position: relative;
     background-color: #fff;
 }
+.thewall-page , .thewall-page>.container-fluid {
+    background-color:#333;
+    color: #9a9b9c;
+}
+.brick-edit .container-fluid {
+    margin-top: 70px;
+}
+.cke_dialog_body, .cke_dialog_tab, .cke_dialog_contents_body {
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+}
+.cke_dialog .ImagePreviewBox {
+    border: 2px ridge black;
+    overflow: hidden;
+    max-height: 60%;
+    max-width: 60%;
+    padding: 2px;
+    background-color: white
+}
+
 .small {
     font-size: .8rem
 }

@@ -5,17 +5,19 @@
 {% block navigation %}
 {% include "thewall/parts/navigation.html" %}
 {% endblock navigation %}
+
 {% if page.header %}
 {% block header %}
-{% include_block page.header %}
+{% include_block page.header %}</div>
 {% endblock header %}
 {% endif %}
 
+
 {% block content %}
-<main class="my-4 pt-4">
-<div class="small text-center mb-4">
-    <a class="badge badge-dark" href="{% url 'brick_new' page.id %}">New Message</a>
-</div>
+<main class="bricks my-4 pt-4">
+    <div class="small text-center mb-4">
+        <a class="badge badge-dark" href="{% url 'brick_new' page.id %}">New Message</a>
+    </div>
     {% if page.search_term %}
     <section class="search-results-section">
         <div class="search_result_header">
