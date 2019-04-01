@@ -44,14 +44,17 @@ body {
     padding-top: 3.5rem;
     padding-bottom: 0;
 }
+.bricks {
+    background-color:#333;
+}
 
-iframe {
+/* iframe {
     position:relative;
     max-width:100%;
     height:auto;
     margin-right: auto;
     margin-left: auto;
-}
+} */
 .jumbotron,
 .jumbotron-fluid {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
