@@ -4,6 +4,7 @@
 <section class="bricks">
     <div class="card-column">
         {% for brick in page.bricks.all %}
+        {% if brick.is_active %}
         <div class="card mb-4">
             <div class="brick d-flex flex-column justify-content-around mb-2">
                 <div class="brick-content mb-2">
@@ -14,14 +15,16 @@
                 <div class="smaller">Author:
                 </div>
                 <div>
-                    <a href="{% url 'BrickmakerDetail' pk=brick.author.id %}"><img class="img-fluid wall-avatars" src="/media/{{ brick.author.brickmaker.avatar_image }}"
-                            alt="avatar image" /><span class="small align-self-center mx-2">{{ brick.author }}</span></a>
+                    <a href="{% url 'BrickmakerDetail' pk=brick.author.id %}"><img class="wall-avatars"
+                            src="/media/{{ brick.author.brickmaker.avatar_image }}" alt="avatar image" /><span
+                            class="small align-self-center mx-2">{{ brick.author }}</span></a>
                     </p>
                     {% include 'thewall/parts/brick_inline_nav.html' %}
                 </div>
             </div>
 
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </section>

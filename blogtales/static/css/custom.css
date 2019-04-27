@@ -17,17 +17,17 @@ body {
     margin-top: 70px;
 }
 .cke_dialog_body, .cke_dialog_tab, .cke_dialog_contents_body {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 90vw;
+    max-height: 80vh;
     overflow: hidden;
 }
 .cke_dialog .ImagePreviewBox {
     border: 2px ridge black;
     overflow: hidden;
-    max-height: 60%;
-    max-width: 60%;
-    padding: 2px;
-    background-color: white
+    max-height: 50vh;
+    max-width: 50vh;
+    padding: .15rem;
+    background-color: rgba(7, 7, 7, 0.322);
 }
 
 .small {
@@ -91,7 +91,7 @@ body {
 }
 .img-thumbnail { max-width:20vw;}
 .wall-avatars {
-    width:50px;
+    width:25%;
     height:auto;
 }
 
@@ -101,13 +101,23 @@ div>input.btn.btn-primary {
 }
 
 blockquote {
-    text-align: center;
-    background-color: #9a9b9c;
-    padding: .5em;
-    font-family: 'libre', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-style: italic;
     font-size: 1.6em;
+    font-style: italic;
+    font-family: 'libre',Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: .25rem 0;
+    border-style:ridge;
+    border-color: rgb(146, 146, 146);
+    border-width: 0;
+
+    padding-left: 1.5rem;
+    padding-right: .8rem;
+    border-left-width: .5rem;
+
+    /* text-align: center; */
+    /* background-color: #9a9b9c; */
+
 }
+
 
 .responsive-object {
     position: relative;

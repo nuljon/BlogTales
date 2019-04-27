@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags crispy_forms_tags %}
 {% block title %}
-Edit Message
+Message Editor
 {% endblock title %}
 
 {% block extra_head %}
@@ -20,8 +20,6 @@ Edit Message
     <form method="POST" class="brick-form">{% csrf_token %}
 {{ form.title|as_crispy_field }}
 {{ form.content|as_crispy_field }}
-        <button type="submit" class="btn btn-outli
-
-        ne-success">Save</button>
+        <button type="submit" class="btn btn-outline-success">Save</button>
     </form>
 {% endblock %}
