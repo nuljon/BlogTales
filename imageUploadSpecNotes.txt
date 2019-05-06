@@ -1,0 +1,10 @@
+Client image transformatoion to 1200px width and compress 80% jpg
+upload to server in user specific context
+back end upload processor hand of to image processor
+image processor isolates original makes copies sized for thumbnail, profile phone, landscape phone, tablet, monitor, 1080 - 4k formats.
+returns the URL of the image in the appropriate sized for the client editor display
+client resplaces image html/css with responsive code for editor dispay and final rendering if image is larger than display (100% of image is max width).
+allow client editing of image - basic suite: size, contrast, gamma, etc.
+ 
+
+

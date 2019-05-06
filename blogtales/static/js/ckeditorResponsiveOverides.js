@@ -40,11 +40,11 @@ var responsive_oembed = function oembedResponsive(oe_string) {
     // calculate vertcal padding
     let vp = parseInt(height / width * 100, 10) + "%";
     // the responsive styles for the parent oembed element
-    let oembed_cssText = ('style="width:100%;height:0;padding-bottom:' + vp + ';" ');
+    let oembed_cssText = ('style="position:relative; width:100%; height:0;padding-bottom:' + vp + ';" ');
     // insert the oembed styles
     buffer = insert_string(buffer, oembed_cssText, 0);
     // the responsive styles for the iframe tag
-    let iframe_cssText = (' style="position:absolute; left:0; width:100%"');
+    let iframe_cssText = (' style="position:absolute; left:0; top:0; width:100%; height:100%"');
     // find insertion point for iframe styles
     let result = buffer.match(/><\/iframe>/i);
     // insert the iframe styles

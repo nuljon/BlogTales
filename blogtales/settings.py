@@ -381,7 +381,7 @@ CKEDITOR_CONFIGS = {
                 'Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste']},
             {'name': 'links', 'items': ['Link']},
             {'name': 'insert', 'items': [
-                'Image', 'Youtube', 'Embed', 'Table', 'HorizontalRule', 'SpecialChar', 'Uploadcare', 'Iframe']},
+                'EasyImageUpload', 'Youtube', 'Embed', 'Table', 'HorizontalRule', 'SpecialChar', 'Uploadcare', 'Iframe']},
             {'name': 'document', 'items': ['Source']},
             {'name': 'basicstyles', 'items': [
                 'Bold', 'Italic', 'Underline', 'Strike', 'Superscript', '-', 'RemoveFormat']},
@@ -395,17 +395,25 @@ CKEDITOR_CONFIGS = {
         'uploadcare': {
             'publicKey': '30b5439d8dd842ee01b4'
         },
+        #cloud services is ckeditor easyimage cdn - needs to be replaced with custom django backend to store and serve responsive images
+        'cloudServices_tokenUrl': 'https://39394.cke-cs.com/token/dev/1FM16jFrIEY5bjhtMIQmaOfof7DYA7KCo20ZEkexrze8wC44OlNiv28qdO0S',
+        'cloudServices_uploadUrl': 'https://39394.cke-cs.com/easyimage/upload/',
+
+        # for pasted embed objects
         'embed_provider': 'https://noembed.com/embed?url={url}&callback={callback}',
 
         'allowedContent': True,
         # 'toolbargroups': [{'name': 'clipboard', 'groups': ['undo', 'clipboard']},
         'toolbarLocation': 'bottom',
         # 'hideDialogFields': 'image:info:txtUrl',
-        # 'removeButtons' : 'Underline,Subscript,PasteText,PasteFromWord,
+        # 'removeButtons' : 'Underline,Subscript,PasteText,PasteFromWord',
+        'removePlugins': 'image',
         'extraPlugins': ','.join([
             'uploadimage',  # the upload image feature
             # your extra plugins here
-            'confighelper',  # allows removeDialogFields="image:info:txtBorder;image:info:txtHSpace"; and hideDialogFields="image:info:htmlPreview";
+            'cloudservices',
+            'easyimage',
+            # confighelper -  allows removeDialogFields="image:info:txtBorder;image:info:txtHSpace"; and hideDialogFields="image:info:htmlPreview";
             # also allows dialog default value setting dialogFieldsDefaultValues =
             # {
             #     image:
@@ -417,8 +425,7 @@ CKEDITOR_CONFIGS = {
             #	}
             #    }
             # }
-
-
+            'confighelper',
             'devtools',
 
         ])
