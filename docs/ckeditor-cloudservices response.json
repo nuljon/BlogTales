@@ -1,0 +1,22 @@
+XHRPOSThttps://39394.cke-cs.com/easyimage/upload/
+[HTTP/2.0 200 OK 1900ms]
+
+
+JSON
+80	https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_80
+160	https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_160
+240	https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_240
+320	https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_320
+400	https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_400
+480	https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_480
+560	https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_560
+640	https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_640
+720	https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_720
+800	https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_800
+default	https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png
+Response payload
+
+1
+
+{"80":"https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_80","160":"https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_160","240":"https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_240","320":"https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_320","400":"https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_400","480":"https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_480","560":"https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_560","640":"https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_640","720":"https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_720","800":"https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png/w_800","default":"https://39394.cdn.cke-cs.com/k7ohndqcPtbg5q9NFeaH/images/4d2d53de067befdc16fb1fd01a27c6ae56dd0f10769d55f7.png"}
+

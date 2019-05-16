@@ -19,8 +19,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, DeleteView, FormView,
                                        UpdateView)
 from django.views.generic.list import ListView
-from thewall.forms import BrickForm, BrickmakerForm
-from thewall.models import Brick, Brickmaker, WallPage
+from .forms import BrickForm, BrickmakerForm
+from .models import Brick, Brickmaker, WallPage
 from django.contrib.auth.models import User
 
 class BrickmakerUpdate(LoginRequiredMixin, UpdateView):

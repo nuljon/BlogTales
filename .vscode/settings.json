@@ -1,9 +1,12 @@
 {
     "editor.fontSize": 24,
-    "python.linting.pylintEnabled": false,
+    "python.linting.pylintEnabled": true,
     "eslint.enable": true,
     "eslint.options": {
         "configFile": "E:/OneDrivebackup/PROJECTS/CMS/freeforum/.vscode/.eslintrc.json"
-        }
+        },
+        "c-cpp-flylint.cppcheck.enable": false,
+        "cppcheck.enable": false,
+        "git.ignoreLimitWarning": true
 
 }

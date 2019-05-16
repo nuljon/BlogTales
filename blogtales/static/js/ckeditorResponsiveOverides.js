@@ -1,3 +1,4 @@
+// @ts-check
 // For responsive autoembed iframes in CKEditor 4 while in edit view,
 // use the following code to:
 // start script once the editor has loaded
@@ -38,7 +39,7 @@ var responsive_oembed = function oembedResponsive(oe_string) {
     let height = parseInt(buffer.slice(heightLocation + 8, heightLocation + 9 + 4), 10);
     let width = parseInt(buffer.slice(widthLocation + 7, widthLocation + 8 + 4), 10);
     // calculate vertcal padding
-    let vp = parseInt(height / width * 100, 10) + "%";
+    let vp = (height / width * 100) + "%";
     // the responsive styles for the parent oembed element
     let oembed_cssText = ('style="position:relative; width:100%; height:0;padding-bottom:' + vp + ';" ');
     // insert the oembed styles
@@ -71,11 +72,15 @@ var insert_string = function insert(main_string, ins_string, pos) {
         ins_string = '';
     }
     let str = main_string.slice(0, pos) + ins_string + main_string.slice(pos);
-    console.log(str);
-    return str;
+        console.log(str);
+        return str;
 };
 
-CKEDITOR.on('instanceReady', function (event) {
+// @ts-ignore
+CKEDITOR.on('instanceReady', /**
+     * @param {{ editor: any; }} event
+     */
+ function (event) {
     //assign vars to the editor object and the textarea element
     var editor = event.editor,
         element = editor.element;
@@ -104,6 +109,7 @@ CKEDITOR.on('instanceReady', function (event) {
                    /*  alert(document.getElementById('cke_1').value); */
                 }, noSnapshot: true
             });
+
             $('#cke_1').html(newData);
             done = true;
             console.log('did we update?');

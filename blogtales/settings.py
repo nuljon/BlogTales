@@ -12,14 +12,13 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from decouple import config, Csv
-
 # import re
 import re
 
-
+from decouple import Csv, config
 from django.conf.global_settings import INTERNAL_IPS
 from unipath import Path
+
 #import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -359,8 +358,8 @@ SITE_ID = 1
 
 
 ####################### configure DJANGO-CKEDITOR  #############
-
-CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_BASEPATH = "/static/js/customckeditor/"
+CKEDITOR_UPLOAD_PATH = "uploads\\"
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_RESTRICT_BY_DATE = True
 # CKEDITOR_FILEICONS setting that allows overriding the icons used by Gallerific
@@ -381,7 +380,7 @@ CKEDITOR_CONFIGS = {
                 'Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste']},
             {'name': 'links', 'items': ['Link']},
             {'name': 'insert', 'items': [
-                'EasyImageUpload', 'Youtube', 'Embed', 'Table', 'HorizontalRule', 'SpecialChar', 'Uploadcare', 'Iframe']},
+                'EasyImageUpload', 'Media', 'Youtube', 'Embed', 'Table', 'HorizontalRule', 'SpecialChar', 'Iframe']},
             {'name': 'document', 'items': ['Source']},
             {'name': 'basicstyles', 'items': [
                 'Bold', 'Italic', 'Underline', 'Strike', 'Superscript', '-', 'RemoveFormat']},
