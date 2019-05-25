@@ -359,12 +359,15 @@ SITE_ID = 1
 
 ####################### configure DJANGO-CKEDITOR  #############
 CKEDITOR_BASEPATH = "/static/js/customckeditor/"
-CKEDITOR_UPLOAD_PATH = "uploads\\"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_IMAGE_SIZES = [3840,1920,1600,1280,960,800,768,640,320]
+CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_RESTRICT_BY_DATE = True
 # CKEDITOR_FILEICONS setting that allows overriding the icons used by Gallerific
 # CKEDITOR_FILENAME_GENERATOR setting which allows specifying a callable which mangles
-THUMBNAIL_SIZE = (100, 100)
+CKEDITOR_FORCE_JPEG_COMPRESSION = True
+THUMBNAIL_SIZE = (75, 75)
 IMAGE_QUALITY = 90
 
 CKEDITOR_CONFIGS = {
@@ -391,12 +394,12 @@ CKEDITOR_CONFIGS = {
         ],
         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
         'width': '100%',
-        'uploadcare': {
-            'publicKey': '30b5439d8dd842ee01b4'
-        },
+       #'uploadcare': {
+       #     'publicKey': '30b5439d8dd842ee01b4'
+        #},
         #cloud services is ckeditor easyimage cdn - needs to be replaced with custom django backend to store and serve responsive images
-        'cloudServices_tokenUrl': 'https://39394.cke-cs.com/token/dev/1FM16jFrIEY5bjhtMIQmaOfof7DYA7KCo20ZEkexrze8wC44OlNiv28qdO0S',
-        'cloudServices_uploadUrl': 'https://39394.cke-cs.com/easyimage/upload/',
+       # 'cloudServices_tokenUrl': 'https://39394.cke-cs.com/token/dev/1FM16jFrIEY5bjhtMIQmaOfof7DYA7KCo20ZEkexrze8wC44OlNiv28qdO0S',
+        'responsiveLoader_uploadUrl': '/upload/',
 
         # for pasted embed objects
         'embed_provider': 'https://noembed.com/embed?url={url}&callback={callback}',
@@ -406,11 +409,12 @@ CKEDITOR_CONFIGS = {
         'toolbarLocation': 'bottom',
         # 'hideDialogFields': 'image:info:txtUrl',
         # 'removeButtons' : 'Underline,Subscript,PasteText,PasteFromWord',
-        'removePlugins': 'image',
+        'removePlugins': 'image,uploadimage, cloudservices',
         'extraPlugins': ','.join([
-            'uploadimage',  # the upload image feature
+            'responsiveloader',
+           # 'uploadimage',  # the upload image feature
             # your extra plugins here
-            'cloudservices',
+            
             'easyimage',
             # confighelper -  allows removeDialogFields="image:info:txtBorder;image:info:txtHSpace"; and hideDialogFields="image:info:htmlPreview";
             # also allows dialog default value setting dialogFieldsDefaultValues =

@@ -80,7 +80,7 @@
 
 			editor.filter.allow( style );
 
-			// At this point cmd should be treated more as a definition due to #1582.
+			// At this point cmd sahould be treated more as a definition due to #1582.
 			var cmd = new CKEDITOR.styleCommand( style );
 			cmd.contextSensitive = true;
 			cmd.refresh = createCommandRefresh( function( widget, editor, path ) {
@@ -239,17 +239,18 @@
 					},
 
 					img: {
-						attributes: '!src,srcset,alt,width,sizes'
+						attributes: '!src,srcset,alt,sizes,styles'
 					}
 				},
 
 				requiredContent: 'figure; img[!src]',
 
-				styleableElements: 'figure',
+				styleableElements: 'figure; img',
 
 				supportedTypes: /image\/(jpeg|png|gif|bmp)/,
 
-				loaderType: CKEDITOR.plugins.cloudservices.cloudServicesLoader,
+				loaderType: CKEDITOR.plugins.responsiveloader.responsiveLoader,
+				// loaderType: CKEDITOR.plugins.cloudservices.cloudServicesLoader,
 
 				progressReporterType: CKEDITOR.plugins.imagebase.progressBar,
 
@@ -337,8 +338,8 @@
 							'data-cke-saved-src': resp[ 'default' ],
 							src: resp[ 'default' ],
 							srcset: srcset,
-							sizes: '100vw'
-						} );
+							sizes: '(min-width: 1920) 17vw, (min-width: 1600) 20vw, (min-width: 1280) 25vw, (min-width: 960) 33vw, (min-width: 640) 50vw, 100vw'
+						});
 					} );
 
 					this.on( 'uploadFailed', function() {
@@ -533,7 +534,8 @@
 	}
 
 	CKEDITOR.plugins.add( 'easyimage', {
-		requires: 'imagebase,balloontoolbar,button,dialog,cloudservices',
+		// requires: 'imagebase,balloontoolbar,button,dialog,cloudservices',
+		requires: 'imagebase,balloontoolbar,button,dialog,responsiveloader',
 		lang: 'en',
 		icons: 'easyimagefull,easyimageside,easyimagealt,easyimagealignleft,easyimagealigncenter,easyimagealignright,easyimageupload', // %REMOVE_LINE_CORE%
 		hidpi: true, // %REMOVE_LINE_CORE%
@@ -682,5 +684,6 @@
 	 * @cfg {String[]/String} [easyimage_toolbar=[ 'EasyImageFull', 'EasyImageSide', 'EasyImageAlt' ]]
 	 * @member CKEDITOR.config
 	 */
-	CKEDITOR.config.easyimage_toolbar = [BUTTON_PREFIX + 'Full', BUTTON_PREFIX + 'AlignLeft', BUTTON_PREFIX + 'AlignCenter', BUTTON_PREFIX + 'AlignRight', BUTTON_PREFIX + 'Alt'];
+	// CKEDITOR.config.easyimage_toolbar = [BUTTON_PREFIX + 'Full', BUTTON_PREFIX + 'AlignLeft', BUTTON_PREFIX + 'AlignCenter', BUTTON_PREFIX + 'AlignRight', BUTTON_PREFIX + 'Alt'];
+		CKEDITOR.config.easyimage_toolbar = [BUTTON_PREFIX + 'Full', BUTTON_PREFIX + 'AlignLeft', BUTTON_PREFIX + 'AlignCenter', BUTTON_PREFIX + 'AlignRight'];
 }() );

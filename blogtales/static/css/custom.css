@@ -105,7 +105,7 @@ blockquote {
     font-style: italic;
     font-family: 'libre',Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding: .25rem 0;
-    border-style:ridge;
+    border-style:  ridge;
     border-color: rgb(146, 146, 146);
     border-width: 0;
 
@@ -119,6 +119,27 @@ blockquote {
 }
 
 
+.easyimage-full  > img{
+max-width: 100%;
+height: auto;
+}
+
+.easyimage-align-center>img {
+	margin: 0 auto;
+	max-width: 100%;
+}
+.easyimage-align-left >img{
+    float: left;
+    max-width: 50%;
+    min-width: 5em;
+    margin-right: 1.5em;
+}
+.easyimage-align-right>img {
+    float: right;
+    max-width: 50%;
+    min-width: 5em;
+    margin-left: 1.5em;
+}
 .responsive-object {
     position: relative;
 }
