@@ -156,9 +156,7 @@ class WallPage(RoutablePageMixin, Page):
 
     @route(r'^search/$')
     def wall_search(self, request, *args, **kwargs):
-        search_query = request.GET.get('q', None)
-        # self.bricks = self.get_bricks()
-        if search_query:
+        if search_query := request.GET.get('q', None):
             self.bricks = self.bricks.filter(body__contains=search_query)
             self.search_term = search_query
             self.search_type = 'search'
@@ -200,8 +198,7 @@ def save_brickmaker(sender, instance, **kwargs):
 # we will refer to the individual wall messages as bricks
 class BrickManager(models.Manager):
     def create_brick(self, wall_page, **kwargs):
-        brick = self.create(wall_page=WallPage.objects.get(pk=wall_page))
-        return brick
+        return self.create(wall_page=WallPage.objects.get(pk=wall_page))
 
 @register_snippet
 class Brick(models.Model):
@@ -234,7 +231,7 @@ class Brick(models.Model):
 
 
     def __str__(self):
-        return '%s' % self.name
+        return f'{self.name}'
 
     def get_wall_page(self):
         return self.wall_page

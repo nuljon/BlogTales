@@ -9,8 +9,8 @@ def editor_js():
     js_files = [
         'colorblock/js/colors.js', 'colorblock/js/jqColorPicker.js', 'colorblock/js/editor.js'
     ]
-    js_includes = format_html_join('\n', '<script src="{0}"></script>',
-                                   ((static(filename),)
-                                    for filename in js_files)
-                                   )
-    return js_includes
+    return format_html_join(
+        '\n',
+        '<script src="{0}"></script>',
+        ((static(filename),) for filename in js_files),
+    )
