@@ -93,7 +93,6 @@ class BrickDetail(LoginRequiredMixin, DetailView):
         if 'pk' in kwargs:
             self=get_object(Brick, **kwargs)
             return self
-        pass
 
     def get_object(self, Brick, **kwargs):
         if 'pk' in kwargs:
@@ -117,7 +116,7 @@ def brick_new(request, wall_page):
             brick.wall_page = WallPage.objects.get(id=wall_page)
             brick.author = request.user
             brick.date = timezone.now()
-            brick.name = '%s-%s-%s' % (brick.date, brick.author, brick.title)
+            brick.name = f'{brick.date}-{brick.author}-{brick.title}'
             brick.is_active = True
             brick.save()
             return redirect('brick_detail', pk=brick.pk)

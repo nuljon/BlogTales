@@ -42,7 +42,7 @@ class ColorWidget(TextInput):
         # Add a hash mark if needed so browser reads value as hex code for color
         if ret.startswith('#'):
             return ret
-        ret = '#%s' % ret if ret else ret
+        ret = f'#{ret}' if ret else ret
         return ret
 
 
@@ -64,9 +64,7 @@ class ColorField(CharField):
 
     def prepare_value(self, value):
         if isinstance(value, str):
-            if value.startswith('#'):
-                return value[1:]
-            return value
+            return value[1:] if value.startswith('#') else value
         # return str(value)
         # or should it be
         return self.prepare_value(str(value))
